@@ -22,27 +22,15 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: 14
-
+    
     - name: Install dependencies
       run: npm install
     
     - name: Build
       run: npm run build
-
+    
     - name: Test
       run: npm run test-headless
-    
-    - name: Upload code coverage report
-      uses: codecov/codecov-action@v1
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        directory: ./coverage/mintplayer/ng-dailymotion-player
-      
-    #- name: Upload code coverage report
-    #  uses: iansu/codecov-action@v1.0.2
-    #  with:
-    #    token: ${{ secrets.CODECOV_TOKEN }}
-    #    directory: ./coverage/mintplayer/ng-dailymotion-player
     
     - name: Push to NPM
       uses: JS-DevTools/npm-publish@v1
@@ -51,7 +39,7 @@ jobs:
         registry: 'https://registry.npmjs.org'
         token: ${{ secrets.PUBLISH_NODE_TO_NPMJS_COM }}
         access: 'public'
-
+    
     - name: Push to Github
       uses: JS-DevTools/npm-publish@v1
       with:
