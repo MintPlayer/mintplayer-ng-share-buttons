@@ -23,12 +23,12 @@ export class TwitterSdkService {
         this.hasAlreadyStartedLoadingTwitterSdk = true;
         
         // Invocation
-        this.scriptTag = window.document.createElement('script');
+        this.scriptTag = document.createElement('script');
         this.scriptTag.id = 'twitter-wjs';
         this.scriptTag.src = 'https://platform.twitter.com/widgets.js';
 
         // Insert in DOM
-        const firstScriptTag = window.document.getElementsByTagName('script')[0];
+        const firstScriptTag = document.getElementsByTagName('script')[0];
         if (!firstScriptTag) {
           document.head.appendChild(this.scriptTag);
         } else if (firstScriptTag.parentNode) {

@@ -23,12 +23,12 @@ export class FacebookSdkService {
         this.hasAlreadyStartedLoadingFacebookSdk = true;
         
         // Invocation
-        this.scriptTag = window.document.createElement('script');
+        this.scriptTag = document.createElement('script');
         this.scriptTag.id = 'facebook-jssdk';
         this.scriptTag.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0';
 
         // Insert in DOM
-        const firstScriptTag = window.document.getElementsByTagName('script')[0];
+        const firstScriptTag = document.getElementsByTagName('script')[0];
         if (!firstScriptTag) {
           document.head.appendChild(this.scriptTag);
         } else if (firstScriptTag.parentNode) {
