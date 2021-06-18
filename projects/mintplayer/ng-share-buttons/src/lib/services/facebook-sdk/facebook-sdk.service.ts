@@ -17,7 +17,6 @@ export class FacebookSdkService {
 
   public loadFacebookSdk() {
       if (!!this.isFacebookSdkReady) {
-        console.log('emit facebookSdkReady$');
         this.facebookSdkReady$.next(true);
       } else if (!this.hasAlreadyStartedLoadingFacebookSdk) {
         // Ensure the script is inserted only once
@@ -39,7 +38,6 @@ export class FacebookSdkService {
         }
 
         this.isFacebookSdkReady = true;
-        console.log('emit facebookSdkReady$');
         this.facebookSdkReady$.next(true);
       }
   }

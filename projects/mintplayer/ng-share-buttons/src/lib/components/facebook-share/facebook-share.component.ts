@@ -19,31 +19,16 @@ export class FacebookShareComponent implements OnInit, OnDestroy, AfterViewInit 
     private facebookSdk: FacebookSdkService,
     @Inject(BASE_URL) private baseUrl: string
   ) {
-    this.destroyed$
-      .pipe(filter(d => !!d))
-      .subscribe((d) => {
-        console.log('destroyed = true');
-      });
-
     this.isViewInited$
       .pipe(filter(i => !!i), take(1))
       .subscribe((inited) => {
-        console.log('Button inited');
         this.facebookSdk.loadFacebookSdk();
       });
     
-    this.facebookSdk.facebookSdkReady$
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe((ready) => {
-        console.log('SDK ready 1');
-      });
-
     combineLatest([this.facebookSdk.facebookSdkReady$, this.commands$])
       .pipe(filter(([ready, commands]) => !!ready))
       .pipe(takeUntil(this.destroyed$))
       .subscribe(([r, commands]) => {
-        console.log('SDK ready');
-
         // Update href
         let urlTree = this.router.createUrlTree(commands);
         let urlSerialized = this.router.serializeUrl(urlTree);
@@ -55,20 +40,13 @@ export class FacebookShareComponent implements OnInit, OnDestroy, AfterViewInit 
       .pipe(filter(([ready, href]) => !!ready))
       .pipe(takeUntil(this.destroyed$))
       .subscribe(([ready, href]) => {
-        console.log('new href', href);
-
         if (typeof window !== 'undefined') {
           setTimeout(() => {
-            let h = `<div class="fb-share-button" data-href="${href}" data-size="${this.size}" data-layout="${this.layout}"></div>`;
-            console.log("Set innerHtml to", h);
-            this.wrapper.nativeElement.innerHTML = h;
+            this.wrapper.nativeElement.innerHTML = `<div class="fb-share-button" data-href="${href}" data-size="${this.size}" data-layout="${this.layout}"></div>`;
             (<any>window)['FB'] && (<any>window)['FB'].XFBML.parse();
           }, 20);
         }
       });
-    
-    console.log('Load facebook sdk');
-    this.facebookSdk.loadFacebookSdk();
   }
 
   ngOnInit() {
