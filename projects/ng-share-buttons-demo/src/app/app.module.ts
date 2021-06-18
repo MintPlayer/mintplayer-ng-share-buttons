@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { QueryParamsConfig, QUERY_PARAMS_CONFIG } from '@mintplayer/ng-router';
 import { ShareButtonsModule } from '@mintplayer/ng-share-buttons';
@@ -12,6 +13,7 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     ShareButtonsModule,
     AppRoutingModule
   ],

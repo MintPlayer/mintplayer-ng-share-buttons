@@ -4,3 +4,13 @@
   <twitter-share [routerLink]='["/hello","world", counter]'></twitter-share>
   <linkedin-share [routerLink]='["/hello","world", counter]'></linkedin-share>
 </div>
+
+<router-outlet>
+
+</router-outlet>
+
+<ul>
+  <li *ngFor="let number of numbers">
+    <a [routerLink]='["/person", number]'>{{ number }}</a>
+  </li>
+</ul>

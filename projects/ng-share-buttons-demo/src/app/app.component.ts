@@ -12,4 +12,6 @@ export class AppComponent {
   increment() {
     this.counter++;
   }
+  
+  numbers = [...Array(10).keys()];
 }
