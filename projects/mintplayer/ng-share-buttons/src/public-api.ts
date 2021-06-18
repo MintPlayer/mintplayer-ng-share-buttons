@@ -2,9 +2,8 @@
  * Public API Surface of ng-share-buttons
  */
 
-export * from './lib/ng-share-buttons.service';
-export * from './lib/ng-share-buttons.component';
-export * from './lib/ng-share-buttons.module';
+export * from './lib/components';
+export * from './lib/share-buttons.module';
 
 /**
  * ng new mintplayer-ng-share-buttons --create-application=false --style=scss

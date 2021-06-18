@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ng-share-buttons-demo';
+  counter = 0;
+
+  increment() {
+    this.counter++;
+  }
 }

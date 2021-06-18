@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NgShareButtonsComponent } from './ng-share-buttons.component';
+import { TwitterShareComponent } from './twitter-share.component';
 
-describe('NgShareButtonsComponent', () => {
-  let component: NgShareButtonsComponent;
-  let fixture: ComponentFixture<NgShareButtonsComponent>;
+describe('TwitterShareComponent', () => {
+  let component: TwitterShareComponent;
+  let fixture: ComponentFixture<TwitterShareComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NgShareButtonsComponent ]
+      declarations: [ TwitterShareComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NgShareButtonsComponent);
+    fixture = TestBed.createComponent(TwitterShareComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
