@@ -1,16 +1,20 @@
-<div>
-  <button (click)="increment()">Increment</button>
-  <facebook-share [routerLink]='["/hello","world", counter]'></facebook-share>
-  <twitter-share [routerLink]='["/hello","world", counter]'></twitter-share>
-  <linkedin-share [routerLink]='["/hello","world", counter]'></linkedin-share>
+<div class="content">
+
+  <span>ng-share-buttons-demo app is running!</span>
+
+  <div>
+    <button (click)="increment()">Increment</button>
+    <facebook-share [routerLink]='["/hello","world", counter]'></facebook-share>
+    <twitter-share [routerLink]='["/hello","world", counter]'></twitter-share>
+    <linkedin-share [routerLink]='["/hello","world", counter]'></linkedin-share>
+  </div>
+
+  <router-outlet></router-outlet>
+
+  <ul>
+    <li *ngFor="let number of numbers">
+      <a [routerLink]='["/person", number]'>{{ number }}</a>
+    </li>
+  </ul>
+
 </div>
-
-<router-outlet>
-
-</router-outlet>
-
-<ul>
-  <li *ngFor="let number of numbers">
-    <a [routerLink]='["/person", number]'>{{ number }}</a>
-  </li>
-</ul>
