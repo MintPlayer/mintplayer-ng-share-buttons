@@ -1,7 +1,7 @@
 {
   "name": "@mintplayer/ng-share-buttons",
   "private": false,
-  "version": "1.4.0",
+  "version": "1.5.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/MintPlayer/mintplayer-ng-share-buttons"
@@ -10,7 +10,7 @@
     "@angular/common": "^12.0.5",
     "@angular/core": "^12.0.5",
     "@mintplayer/ng-router": "^2.0.0",
-    "@mintplayer/ng-base-url": "^1.3.0"
+    "@mintplayer/ng-base-url": "^2.1.0"
   },
   "dependencies": {
     "tslib": "^2.1.0"
