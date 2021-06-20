@@ -1,10 +1,15 @@
-import { Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FacebookSdkService {
+
+  constructor(@Inject(DOCUMENT) private document: Document) {
+  }
+
   private hasAlreadyStartedLoadingFacebookSdk = false;
   private isFacebookSdkReady = false;
   private scriptTag!: HTMLScriptElement;
@@ -23,14 +28,14 @@ export class FacebookSdkService {
         this.hasAlreadyStartedLoadingFacebookSdk = true;
         
         // Invocation
-        this.scriptTag = document.createElement('script');
+        this.scriptTag = this.document.createElement('script');
         this.scriptTag.id = 'facebook-jssdk';
         this.scriptTag.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0';
 
         // Insert in DOM
-        const firstScriptTag = document.getElementsByTagName('script')[0];
+        const firstScriptTag = this.document.getElementsByTagName('script')[0];
         if (!firstScriptTag) {
-          document.head.appendChild(this.scriptTag);
+          this.document.head.appendChild(this.scriptTag);
         } else if (firstScriptTag.parentNode) {
           firstScriptTag.parentNode.insertBefore(this.scriptTag, firstScriptTag);
         } else {
