@@ -36,10 +36,10 @@ export class TwitterSdkService {
         const firstScriptTag = this.document.getElementsByTagName('script')[0];
         if (!firstScriptTag) {
           this.document.head.appendChild(this.scriptTag);
-        } else if (firstScriptTag.parentNode) {
+        } else if (!!firstScriptTag.parentNode) {
           firstScriptTag.parentNode.insertBefore(this.scriptTag, firstScriptTag);
         } else {
-          throw 'First script tag has no parent node';
+          this.document.head.appendChild(this.scriptTag);
         }
 
         this.isTwitterSdkReady = true;
