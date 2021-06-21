@@ -1,5 +1,6 @@
 import { LocationStrategy } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, Inject, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Params } from '@angular/router';
 import { BASE_URL } from '@mintplayer/ng-base-url';
 import { AdvancedRouter } from '@mintplayer/ng-router';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
@@ -25,12 +26,12 @@ export class TwitterShareComponent implements OnInit, OnDestroy, AfterViewInit {
         this.twitterSdk.loadTwitterSdk();
       });
     
-    combineLatest([this.twitterSdk.twitterSdkReady$, this.commands$])
+    combineLatest([this.twitterSdk.twitterSdkReady$, this.commands$, this.queryParams$])
       .pipe(filter(([ready, commands]) => !!ready))
       .pipe(takeUntil(this.destroyed$))
-      .subscribe(([r, commands]) => {
+      .subscribe(([r, commands, queryParams]) => {
         // Update href
-        let urlTree = this.router.createUrlTree(commands);
+        let urlTree = this.router.createUrlTree(commands, { queryParams });
         let urlSerialized = this.router.serializeUrl(urlTree);
         let href = this.baseUrl + this.locationStrategy.prepareExternalUrl(urlSerialized);
         this.href$.next(href);
@@ -59,13 +60,14 @@ export class TwitterShareComponent implements OnInit, OnDestroy, AfterViewInit {
   private destroyed$ = new Subject();
   private isViewInited$ = new BehaviorSubject<boolean>(false);
   private commands$ = new BehaviorSubject<any[]>([]);
+  private queryParams$ = new BehaviorSubject<Params>({});
   private href$ = new BehaviorSubject<string>('');
 
   ngAfterViewInit() {
     this.isViewInited$.next(true);
   }
 
-  //#region url
+  //#region routerLink
   @Input() set routerLink(value: string | any[]) {
     if (value === null) {
       this.commands$.next([]);
@@ -74,6 +76,11 @@ export class TwitterShareComponent implements OnInit, OnDestroy, AfterViewInit {
     } else {
       this.commands$.next([value]);
     }
+  }
+  //#endregion
+  //#region queryParams
+  @Input() set queryParams(value: Params | null) {
+    this.queryParams$.next(value ?? {});
   }
   //#endregion
   //#region text
