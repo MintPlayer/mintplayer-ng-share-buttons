@@ -1,7 +1,7 @@
 import { LocationStrategy } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, Inject, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Params } from '@angular/router';
-import { BASE_URL } from '@mintplayer/ng-base-url';
+import { BaseUrlService, BASE_URL } from '@mintplayer/ng-base-url';
 import { AdvancedRouter } from '@mintplayer/ng-router';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { filter, take, takeUntil } from 'rxjs/operators';
@@ -18,7 +18,7 @@ export class LinkedinShareComponent implements OnInit, OnDestroy, AfterViewInit 
     private router: AdvancedRouter,
     private locationStrategy: LocationStrategy,
     private linkedinSdk: LinkedinSdkService,
-    @Inject(BASE_URL) private baseUrl: string
+    private baseUrlService: BaseUrlService,
   ) {
     this.isViewInited$
       .pipe(filter(i => !!i), take(1))
@@ -33,7 +33,7 @@ export class LinkedinShareComponent implements OnInit, OnDestroy, AfterViewInit 
         // Update href
         let urlTree = this.router.createUrlTree(commands, { queryParams });
         let urlSerialized = this.router.serializeUrl(urlTree);
-        let href = this.baseUrl + this.locationStrategy.prepareExternalUrl(urlSerialized);
+        let href = this.baseUrlService.getBaseUrl({ dropScheme: false }) + this.locationStrategy.prepareExternalUrl(urlSerialized);
         this.href$.next(href);
       });
     

@@ -1,7 +1,7 @@
 import { LocationStrategy } from '@angular/common';
 import { AfterViewChecked, AfterViewInit, Component, ElementRef, Inject, Input, IterableDiffer, IterableDiffers, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { filter, map, take, takeUntil } from 'rxjs/operators';
-import { BASE_URL } from '@mintplayer/ng-base-url';
+import { BaseUrlService, BASE_URL } from '@mintplayer/ng-base-url';
 import { AdvancedRouter } from '@mintplayer/ng-router';
 import { FacebookSdkService } from '../../services/facebook-sdk/facebook-sdk.service';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
@@ -18,7 +18,7 @@ export class FacebookShareComponent implements OnInit, OnDestroy, AfterViewInit 
     private router: AdvancedRouter,
     private locationStrategy: LocationStrategy,
     private facebookSdk: FacebookSdkService,
-    @Inject(BASE_URL) private baseUrl: string
+    private baseUrlService: BaseUrlService,
   ) {
     this.isViewInited$
       .pipe(filter(i => !!i), take(1))
@@ -33,7 +33,7 @@ export class FacebookShareComponent implements OnInit, OnDestroy, AfterViewInit 
         // Update href
         let urlTree = this.router.createUrlTree(commands, { queryParams });
         let urlSerialized = this.router.serializeUrl(urlTree);
-        let href = this.baseUrl + this.locationStrategy.prepareExternalUrl(urlSerialized);
+        let href = this.baseUrlService.getBaseUrl({ dropScheme: false }) + this.locationStrategy.prepareExternalUrl(urlSerialized);
         this.href$.next(href);
       });
     
