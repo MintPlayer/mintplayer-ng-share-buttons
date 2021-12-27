@@ -12,6 +12,9 @@
   <router-outlet></router-outlet>
 
   <ul>
+    <li>
+      <a [routerLink]='["/"]'>Home</a>
+    </li>
     <li *ngFor="let number of numbers">
       <a [routerLink]='["/person", number]'>{{ number }}</a>
     </li>

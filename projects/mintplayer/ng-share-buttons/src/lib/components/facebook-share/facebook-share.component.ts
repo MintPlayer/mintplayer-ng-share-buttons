@@ -26,7 +26,7 @@ export class FacebookShareComponent implements OnInit, OnDestroy, AfterViewInit 
         this.facebookSdk.loadFacebookSdk();
       });
     
-    combineLatest([this.facebookSdk.facebookSdkReady$, this.commands$, this.queryParams$])
+    combineLatest([this.facebookSdk.facebookSdkReady$.pipe(filter(r => !!r), take(1)), this.commands$, this.queryParams$])
       .pipe(filter(([ready, commands]) => !!ready))
       .pipe(takeUntil(this.destroyed$))
       .subscribe(([r, commands, queryParams]) => {
@@ -37,10 +37,10 @@ export class FacebookShareComponent implements OnInit, OnDestroy, AfterViewInit 
         this.href$.next(href);
       });
     
-    combineLatest([this.facebookSdk.facebookSdkReady$, this.href$])
-      .pipe(filter(([ready, href]) => !!ready))
+    this.href$
+      .pipe(filter((href) => !!href))
       .pipe(takeUntil(this.destroyed$))
-      .subscribe(([ready, href]) => {
+      .subscribe((href) => {
         if (typeof window !== 'undefined') {
           setTimeout(() => {
             this.wrapper.nativeElement.innerHTML = `<div class="fb-share-button" data-href="${href}" data-size="${this.size}" data-layout="${this.layout}"></div>`;
@@ -61,7 +61,7 @@ export class FacebookShareComponent implements OnInit, OnDestroy, AfterViewInit 
   private isViewInited$ = new BehaviorSubject<boolean>(false);
   private commands$ = new BehaviorSubject<any[]>([]);
   private queryParams$ = new BehaviorSubject<Params>({});
-  private href$ = new BehaviorSubject<string>('');
+  private href$ = new BehaviorSubject<string | null>(null);
 
   ngAfterViewInit() {
     this.isViewInited$.next(true);
