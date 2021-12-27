@@ -44,7 +44,7 @@ export class FacebookShareComponent implements OnInit, OnDestroy, AfterViewInit 
         if (typeof window !== 'undefined') {
           setTimeout(() => {
             this.wrapper.nativeElement.innerHTML = `<div class="fb-share-button" data-href="${href}" data-size="${this.size}" data-layout="${this.layout}"></div>`;
-            (<any>window)['FB'] && (<any>window)['FB'].XFBML.parse();
+            (<any>window)['FB'] && (<any>window)['FB'].XFBML.parse(this.wrapper.nativeElement);
           }, 20);
         }
       });
