@@ -5,6 +5,7 @@ import { BaseUrlService, BASE_URL } from '@mintplayer/ng-base-url';
 import { AdvancedRouter } from '@mintplayer/ng-router';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { filter, take, takeUntil } from 'rxjs/operators';
+import { ExternalUrlService } from '../../services/external-url/external-url.service';
 import { TwitterSdkService } from '../../services/twitter-sdk/twitter-sdk.service';
 
 @Component({
@@ -15,10 +16,8 @@ import { TwitterSdkService } from '../../services/twitter-sdk/twitter-sdk.servic
 export class TwitterShareComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(
-    private router: AdvancedRouter,
-    private locationStrategy: LocationStrategy,
     private twitterSdk: TwitterSdkService,
-    private baseUrlService: BaseUrlService,
+    private externalUrlService: ExternalUrlService
   ) {
     this.isViewInited$
       .pipe(filter(i => !!i), take(1))
@@ -31,9 +30,7 @@ export class TwitterShareComponent implements OnInit, OnDestroy, AfterViewInit {
       .pipe(takeUntil(this.destroyed$))
       .subscribe(([r, commands, queryParams]) => {
         // Update href
-        let urlTree = this.router.createUrlTree(commands, { queryParams });
-        let urlSerialized = this.router.serializeUrl(urlTree);
-        let href = this.baseUrlService.getBaseUrl({ dropScheme: false }) + this.locationStrategy.prepareExternalUrl(urlSerialized);
+        const href = this.externalUrlService.buildUrl(commands, queryParams);
         this.href$.next(href);
       });
     
