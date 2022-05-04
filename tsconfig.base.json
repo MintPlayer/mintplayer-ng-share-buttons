@@ -1,0 +1,29 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@mintplayer/ng-base-url": ["libs/mintplayer-ng-base-url/src/index.ts"],
+      "@mintplayer/ng-router": ["libs/mintplayer-ng-router/src/index.ts"],
+      "@mintplayer/ng-router-provider": [
+        "libs/mintplayer-ng-router-provider/src/index.ts"
+      ],
+      "@mintplayer/ng-share-buttons": [
+        "libs/mintplayer-ng-share-buttons/src/index.ts"
+      ]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

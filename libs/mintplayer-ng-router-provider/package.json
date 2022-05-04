@@ -1,0 +1,16 @@
+{
+  "name": "@mintplayer/ng-router-provider",
+  "version": "13.3.0",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MintPlayer/mintplayer-ng-share-buttons"
+  },
+  "peerDependencies": {
+    "@angular/common": "^13.3.0",
+    "@angular/core": "^13.3.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}

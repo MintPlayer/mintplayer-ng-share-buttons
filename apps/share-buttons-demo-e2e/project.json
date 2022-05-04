@@ -1,0 +1,28 @@
+{
+  "root": "apps/share-buttons-demo-e2e",
+  "sourceRoot": "apps/share-buttons-demo-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/share-buttons-demo-e2e/cypress.json",
+        "devServerTarget": "share-buttons-demo:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "share-buttons-demo:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/share-buttons-demo-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["share-buttons-demo"]
+}
