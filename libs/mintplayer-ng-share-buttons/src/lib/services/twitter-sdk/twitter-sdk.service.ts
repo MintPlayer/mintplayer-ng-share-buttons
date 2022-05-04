@@ -21,7 +21,7 @@ export class TwitterSdkService {
   );
 
   public loadTwitterSdk() {
-      if (!!this.isTwitterSdkReady) {
+      if (this.isTwitterSdkReady) {
         this.twitterSdkReady$.next(true);
       } else if (!this.hasAlreadyStartedLoadingTwitterSdk) {
         // Ensure the script is inserted only once
@@ -36,7 +36,7 @@ export class TwitterSdkService {
         const firstScriptTag = this.document.getElementsByTagName('script')[0];
         if (!firstScriptTag) {
           this.document.head.appendChild(this.scriptTag);
-        } else if (!!firstScriptTag.parentNode) {
+        } else if (firstScriptTag.parentNode) {
           firstScriptTag.parentNode.insertBefore(this.scriptTag, firstScriptTag);
         } else {
           this.document.head.appendChild(this.scriptTag);

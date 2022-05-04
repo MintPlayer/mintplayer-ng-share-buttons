@@ -1,6 +1,6 @@
 {
   "name": "@mintplayer/ng-router",
-  "version": "13.3.0",
+  "version": "13.4.0",
   "private": false,
   "repository": {
     "type": "git",
@@ -9,7 +9,7 @@
   "peerDependencies": {
     "@angular/common": "^13.3.0",
     "@angular/core": "^13.3.0",
-    "@mintplayer/ng-router-provider": "^13.3.0"
+    "@mintplayer/ng-router-provider": "^13.4.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

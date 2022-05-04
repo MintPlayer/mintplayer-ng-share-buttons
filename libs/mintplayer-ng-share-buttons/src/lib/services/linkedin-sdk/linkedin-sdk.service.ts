@@ -21,7 +21,7 @@ export class LinkedinSdkService {
   );
 
   public loadLinkedinSdk() {
-      if (!!this.isLinkedinSdkReady) {
+      if (this.isLinkedinSdkReady) {
         this.LinkedinSdkReady$.next(true);
       } else if (!this.hasAlreadyStartedLoadingLinkedinSdk) {
         // Ensure the script is inserted only once
@@ -36,7 +36,7 @@ export class LinkedinSdkService {
         const firstScriptTag = this.document.getElementsByTagName('script')[0];
         if (!firstScriptTag) {
           this.document.head.appendChild(this.scriptTag);
-        } else if (!!firstScriptTag.parentNode) {
+        } else if (firstScriptTag.parentNode) {
           firstScriptTag.parentNode.insertBefore(this.scriptTag, firstScriptTag);
         } else {
           this.document.head.appendChild(this.scriptTag);

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Inject, Input, IterableDiffer, IterableDiffers, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core';
 import { filter, take, takeUntil } from 'rxjs/operators';
 import { FacebookSdkService } from '../../services/facebook-sdk/facebook-sdk.service';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
@@ -10,7 +10,7 @@ import { ExternalUrlService } from '../../services/external-url/external-url.ser
   templateUrl: './facebook-share.component.html',
   styleUrls: ['./facebook-share.component.scss']
 })
-export class FacebookShareComponent implements OnInit, OnDestroy, AfterViewInit {
+export class FacebookShareComponent implements OnDestroy, AfterViewInit {
 
   constructor(
     private facebookSdk: FacebookSdkService,
@@ -42,9 +42,6 @@ export class FacebookShareComponent implements OnInit, OnDestroy, AfterViewInit 
           }, 20);
         }
       });
-  }
-
-  ngOnInit() {
   }
 
   ngOnDestroy() {

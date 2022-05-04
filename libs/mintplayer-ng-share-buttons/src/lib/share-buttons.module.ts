@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { BaseUrlModule } from '@mintplayer/ng-base-url';
 import { AdvancedRouterModule } from '@mintplayer/ng-router';
 import { FacebookShareComponent } from './components/facebook-share/facebook-share.component';
@@ -12,6 +13,7 @@ import { LinkedinShareComponent } from './components/linkedin-share/linkedin-sha
     LinkedinShareComponent
   ],
   imports: [
+    RouterModule,
     BaseUrlModule,
     AdvancedRouterModule
   ],
