@@ -58,8 +58,8 @@ export class FacebookShareComponent implements OnDestroy, AfterViewInit {
     this.isViewInited$.next(true);
   }
 
-  //#region routerLink
-  @Input() set routerLink(value: string | any[]) {
+  //#region shareRouterLink
+  @Input() set shareRouterLink(value: string | any[]) {
     if (value === null) {
       this.commands$.next([]);
     } else if (Array.isArray(value)) {

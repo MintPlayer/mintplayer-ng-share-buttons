@@ -98,7 +98,7 @@ class AppComponent {
   selector: 'test-home-component',
   template: `
     <h2>Home</h2>
-    <twitter-share [routerLink]='[]'></twitter-share>`
+    <twitter-share [shareRouterLink]='[]'></twitter-share>`
 })
 class HomeComponent {
 }

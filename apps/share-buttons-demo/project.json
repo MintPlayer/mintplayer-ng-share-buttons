@@ -1,12 +1,13 @@
 {
   "projectType": "application",
-  "root": "apps/share-buttons-demo",
   "sourceRoot": "apps/share-buttons-demo/src",
   "prefix": "mintplayer-ng-share-buttons",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/share-buttons-demo",
         "index": "apps/share-buttons-demo/src/index.html",
@@ -18,7 +19,9 @@
           "apps/share-buttons-demo/src/favicon.ico",
           "apps/share-buttons-demo/src/assets"
         ],
-        "styles": ["apps/share-buttons-demo/src/styles.scss"],
+        "styles": [
+          "apps/share-buttons-demo/src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -83,9 +86,11 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/share-buttons-demo"],
+      "outputs": [
+        "coverage/apps/share-buttons-demo"
+      ],
       "options": {
-        "jestConfig": "apps/share-buttons-demo/jest.config.js",
+        "jestConfig": "apps/share-buttons-demo/jest.config.ts",
         "passWithNoTests": true
       }
     }

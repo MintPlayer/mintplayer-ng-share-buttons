@@ -98,7 +98,7 @@ class AppComponent {
   selector: 'test-home-component',
   template: `
     <h2>Home</h2>
-    <linkedin-share [routerLink]='[]'></linkedin-share>`
+    <linkedin-share [shareRouterLink]='[]'></linkedin-share>`
 })
 class HomeComponent {
 }

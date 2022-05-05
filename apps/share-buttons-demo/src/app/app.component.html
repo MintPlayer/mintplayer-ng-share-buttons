@@ -1,1 +1,15 @@
-<mintplayer-ng-share-buttons-nx-welcome></mintplayer-ng-share-buttons-nx-welcome>
+<p class="text-center">
+    <facebook-share [shareRouterLink]='["/about"]'></facebook-share>
+    <twitter-share [shareRouterLink]='["/about"]'></twitter-share>
+    <linkedin-share [shareRouterLink]='["/about"]'></linkedin-share>
+</p>
+
+<h1 class="text-center">Welcome to @mintplayer/ng-share-buttons</h1>
+
+<a [routerLink]='["/"]'>Home</a> |
+<a [routerLink]='["/about"]'>About</a> |
+<a [routerLink]='["/contact"]'>Contact</a> |
+<a [routerLink]='["/people"]'>People</a>
+<hr>
+<router-outlet></router-outlet>
+<hr>

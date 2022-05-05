@@ -98,7 +98,7 @@ class AppComponent {
   selector: 'test-home-component',
   template: `
     <h2>Home</h2>
-    <facebook-share [routerLink]='[]'></facebook-share>`
+    <facebook-share [shareRouterLink]='[]'></facebook-share>`
 })
 class HomeComponent {
 }
