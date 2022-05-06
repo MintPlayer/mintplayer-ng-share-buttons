@@ -42,5 +42,6 @@ Make sure you have [NodeJS](https://nodejs.org/en/download/) installed.
 Then run following commands
 
     git clone https://github.com/MintPlayer/mintplayer-ng-share-buttons
+    cd mintplayer-ng-share-buttons
     npm i
     npm start -- --open
