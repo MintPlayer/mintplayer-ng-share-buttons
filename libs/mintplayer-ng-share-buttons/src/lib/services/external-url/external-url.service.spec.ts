@@ -3,7 +3,8 @@ import { TestBed } from '@angular/core/testing';
 import { Router, UrlCreationOptions, UrlSegment, UrlSegmentGroup, UrlTree } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BASE_URL } from '@mintplayer/ng-base-url';
-import { AdvancedRouter, QueryParamsConfig, QUERY_PARAMS_CONFIG } from '@mintplayer/ng-router';
+import { QueryParamsConfig, QUERY_PARAMS_CONFIG } from '@mintplayer/ng-router';
+import { ROUTER } from '@mintplayer/ng-router-provider';
 
 import { ExternalUrlService } from './external-url.service';
 
@@ -21,7 +22,7 @@ describe('ExternalUrlService', () => {
         HomeComponent
       ],
       providers: [{
-        provide: AdvancedRouter,
+        provide: ROUTER,
         useClass: MockAdvancedRouter
       }, {
         provide: BASE_URL,
@@ -48,7 +49,7 @@ class MockAdvancedRouter {
   }
 
   createUrlTree(commands: any[], extras?: UrlCreationOptions) : UrlTree {
-    let urlTree = new UrlTree();
+    const urlTree = new UrlTree();
 
     // Segments
     urlTree.root = new UrlSegmentGroup(

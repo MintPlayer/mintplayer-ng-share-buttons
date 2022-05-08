@@ -105,7 +105,7 @@ describe('AdvancedRouterLinkDirective', () => {
 });
 
 const mockLocation = {
-  back: jasmine.createSpy('back'),
+  back: jest.fn(x => x),
 };
 
 class MockAdvancedRouter {
