@@ -4,7 +4,7 @@ import { BaseUrlService } from './services/base-url/base-url.service';
 
 // ALL PARAMETERS ARE BEING EVALUATED HERE RIGHTAWAY, NOT JUST AT THE TIME THEY'RE NEEDED
 export function getBaseUrl(baseUrlService: BaseUrlService) {
-  return baseUrlService.getBaseUrl();
+  return baseUrlService.getBaseUrl({ dropScheme: false });
 };
 
 @NgModule({

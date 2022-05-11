@@ -42,7 +42,7 @@ export class BaseUrlService {
     
     // Trim the scheme
     if (!!baseUrlOptions && baseUrlOptions.dropScheme) {
-      url = url.replace(/^https?\:\/\//gi, '//');
+      url = url.replace(/^https?:\/\//gi, '//');
     }
 
     // Slice the trailing /
