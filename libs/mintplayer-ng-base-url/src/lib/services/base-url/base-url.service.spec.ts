@@ -1,7 +1,7 @@
+import { APP_BASE_HREF } from '@angular/common';
 import { TestBed } from '@angular/core/testing';
 import { BootFuncParams } from '../../interfaces/boot-func-params';
 import { BOOT_FUNC_PARAMS } from '../../providers/boot-func-params.provider';
-import { BASE_URL } from '../../providers/base-url.provider';
 import { BrowserBaseUrlService } from '../browser-base-url/browser-base-url.service';
 import { ServerBaseUrlService } from '../server-base-url/server-base-url.service';
 import { BaseUrlService } from './base-url.service';
@@ -15,7 +15,7 @@ describe('BaseUrlService', () => {
       ],
       providers: [
         { provide: BaseUrlService, useClass: BaseUrlService },
-        { provide: BASE_URL, useValue: 'http://example.test' },
+        { provide: APP_BASE_HREF, useValue: 'http://example.test' },
         { provide: BOOT_FUNC_PARAMS, useValue: <BootFuncParams>{ origin: 'http://example.test', baseUrl: '/' } },
         { provide: BrowserBaseUrlService, useClass: MockBrowserBaseUrlService },
         { provide: ServerBaseUrlService, useClass: MockServerBaseUrlService },

@@ -1,7 +1,6 @@
-import { CommonModule } from '@angular/common';
+import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { BASE_URL } from './providers';
-import { BaseUrlService } from './services';
+import { BaseUrlService } from './services/base-url/base-url.service';
 
 // ALL PARAMETERS ARE BEING EVALUATED HERE RIGHTAWAY, NOT JUST AT THE TIME THEY'RE NEEDED
 export function getBaseUrl(baseUrlService: BaseUrlService) {
@@ -13,7 +12,7 @@ export function getBaseUrl(baseUrlService: BaseUrlService) {
   imports: [CommonModule],
   exports: [],
   providers: [
-    { provide: BASE_URL, useFactory: getBaseUrl, deps: [BaseUrlService] },
+    { provide: APP_BASE_HREF, useFactory: getBaseUrl, deps: [BaseUrlService] },
   ]
 })
 export class BaseUrlModule {
@@ -21,7 +20,7 @@ export class BaseUrlModule {
   //   return {
   //     ngModule: BaseUrlModule,
   //     providers: [
-  //       { provide: BASE_URL, useFactory: getBaseUrl }
+  //       { provide: APP_BASE_HREF, useFactory: getBaseUrl }
   //     ]
   //   }
   // }

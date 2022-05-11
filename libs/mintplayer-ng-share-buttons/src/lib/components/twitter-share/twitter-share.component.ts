@@ -1,8 +1,5 @@
-import { LocationStrategy } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, Inject, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core';
 import { Params } from '@angular/router';
-import { BaseUrlService, BASE_URL } from '@mintplayer/ng-base-url';
-import { AdvancedRouter } from '@mintplayer/ng-router';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { filter, take, takeUntil } from 'rxjs/operators';
 import { ExternalUrlService } from '../../services/external-url/external-url.service';
@@ -13,7 +10,7 @@ import { TwitterSdkService } from '../../services/twitter-sdk/twitter-sdk.servic
   templateUrl: './twitter-share.component.html',
   styleUrls: ['./twitter-share.component.scss']
 })
-export class TwitterShareComponent implements OnInit, OnDestroy, AfterViewInit {
+export class TwitterShareComponent implements OnDestroy, AfterViewInit {
 
   constructor(
     private twitterSdk: TwitterSdkService,
@@ -47,23 +44,12 @@ export class TwitterShareComponent implements OnInit, OnDestroy, AfterViewInit {
       });
   }
 
-  ngOnInit() {
-  }
-
-  ngOnDestroy() {
-    this.destroyed$.next(true);
-  }
-
   private destroyed$ = new Subject();
   private isViewInited$ = new BehaviorSubject<boolean>(false);
   private commands$ = new BehaviorSubject<any[]>([]);
   private queryParams$ = new BehaviorSubject<Params>({});
   private href$ = new BehaviorSubject<string | null>(null);
-
-  ngAfterViewInit() {
-    this.isViewInited$.next(true);
-  }
-
+  
   //#region shareRouterLink
   @Input() set shareRouterLink(value: string | any[]) {
     if (value === null) {
@@ -81,12 +67,20 @@ export class TwitterShareComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   //#endregion
   //#region text
-  @Input() text: string = '';
+  @Input() text = '';
   //#endregion
   //#region size
   @Input() size: 'large' | 'small' = 'large';
   //#endregion
-
+  
   @ViewChild('wrapper') wrapper!: ElementRef<HTMLDivElement>;
+
+  ngOnDestroy() {
+    this.destroyed$.next(true);
+  }
+
+  ngAfterViewInit() {
+    this.isViewInited$.next(true);
+  }
 
 }

@@ -1,8 +1,8 @@
+import { APP_BASE_HREF } from '@angular/common';
 import { Component, Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { Router, UrlCreationOptions, UrlSegment, UrlSegmentGroup, UrlTree } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { BASE_URL } from '@mintplayer/ng-base-url';
 import { QueryParamsConfig, QUERY_PARAMS_CONFIG } from '@mintplayer/ng-router';
 import { ROUTER } from '@mintplayer/ng-router-provider';
 
@@ -25,7 +25,7 @@ describe('ExternalUrlService', () => {
         provide: ROUTER,
         useClass: MockAdvancedRouter
       }, {
-        provide: BASE_URL,
+        provide: APP_BASE_HREF,
         useValue: 'http://localhost/'
       }, {
         provide: QUERY_PARAMS_CONFIG,
