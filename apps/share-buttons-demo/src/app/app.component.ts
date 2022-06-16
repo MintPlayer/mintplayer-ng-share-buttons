@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BaseUrlService } from '@mintplayer/ng-base-url';
 
 @Component({
   selector: 'mintplayer-ng-share-buttons-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  constructor(private baseUrlService: BaseUrlService) {
+    this.baseUrl = baseUrlService.getBaseUrl();
+  }
+
   title = '@mintplayer/ng-share-buttons';
+  baseUrl: string | null = '';
 }
