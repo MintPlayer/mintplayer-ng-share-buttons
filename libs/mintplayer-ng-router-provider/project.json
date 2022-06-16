@@ -1,15 +1,15 @@
 {
+  "$schema": "..\\..\\node_modules\\nx\\schemas\\project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/mintplayer-ng-router-provider/src",
   "prefix": "mintplayer-ng-share-buttons",
   "targets": {
     "build": {
       "executor": "@nrwl/angular:package",
-      "outputs": [
-        "dist/libs/mintplayer-ng-router-provider"
-      ],
+      "outputs": ["dist/libs/mintplayer-ng-router-provider"],
       "options": {
-        "project": "libs/mintplayer-ng-router-provider/ng-package.json"
+        "project": "libs/mintplayer-ng-router-provider/ng-package.json",
+        "tsConfig": "libs/mintplayer-ng-router-provider/tsconfig.lib.json"
       },
       "configurations": {
         "production": {
@@ -23,9 +23,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/mintplayer-ng-router-provider"
-      ],
+      "outputs": ["coverage/libs/mintplayer-ng-router-provider"],
       "options": {
         "jestConfig": "libs/mintplayer-ng-router-provider/jest.config.ts",
         "passWithNoTests": true

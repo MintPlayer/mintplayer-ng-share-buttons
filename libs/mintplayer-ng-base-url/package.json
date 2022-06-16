@@ -1,14 +1,15 @@
 {
   "name": "@mintplayer/ng-base-url",
-  "version": "13.6.1",
+  "version": "14.0.0",
   "private": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/MintPlayer/mintplayer-ng-share-buttons"
+    "url": "https://github.com/MintPlayer/mintplayer-ng-share-buttons",
+    "directory": "libs/mintplayer-ng-base-url"
   },
   "peerDependencies": {
-    "@angular/common": "^13.3.0",
-    "@angular/core": "^13.3.0"
+    "@angular/common": "^14.0.0",
+    "@angular/core": "^14.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
