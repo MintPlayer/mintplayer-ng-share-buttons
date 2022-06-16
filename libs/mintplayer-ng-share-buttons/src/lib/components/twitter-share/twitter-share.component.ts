@@ -28,6 +28,7 @@ export class TwitterShareComponent implements OnDestroy, AfterViewInit {
       .subscribe(([r, commands, queryParams]) => {
         // Update href
         const href = this.externalUrlService.buildUrl(commands, queryParams);
+        console.log('twitter href', href);
         this.href$.next(href);
       });
     
