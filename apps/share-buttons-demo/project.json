@@ -16,7 +16,8 @@
         "inlineStyleLanguage": "scss",
         "assets": [
           "apps/share-buttons-demo/src/favicon.ico",
-          "apps/share-buttons-demo/src/assets"
+          "apps/share-buttons-demo/src/assets",
+          "apps/share-buttons-demo/src/web.config"
         ],
         "styles": ["apps/share-buttons-demo/src/styles.scss"],
         "scripts": []
