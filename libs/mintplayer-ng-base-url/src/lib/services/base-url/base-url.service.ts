@@ -40,9 +40,24 @@ export class BaseUrlService {
       return null;
     }
     
-    // Trim the scheme
-    if (!!baseUrlOptions && baseUrlOptions.dropScheme) {
-      url = url.replace(/^https?:\/\//gi, '//');
+    if (!!baseUrlOptions) {
+      
+      // Insert the subdomain
+      if (baseUrlOptions.subdomain) {
+        if (!(/^https?:\/\/localhost\b/.test(url) || /https?:\/\/[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}\b/.test(url))) {
+          const rgxSchemeHost = new RegExp(/^(?<scheme>https?):\/\/(?<host>[^\/]+)/);
+          const match = url.match(rgxSchemeHost);
+          if (match) {
+            url = url.replace(rgxSchemeHost, `$1://${baseUrlOptions.subdomain}.$2`);
+          }
+        }
+      }
+
+      // Trim the scheme
+      if (baseUrlOptions.dropScheme) {
+        url = url.replace(/^https?:\/\//gi, '//');
+      }
+
     }
 
     // Slice the trailing /

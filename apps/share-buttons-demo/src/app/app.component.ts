@@ -8,7 +8,7 @@ import { BaseUrlService } from '@mintplayer/ng-base-url';
 })
 export class AppComponent {
   constructor(private baseUrlService: BaseUrlService) {
-    this.baseUrl = baseUrlService.getBaseUrl();
+    this.baseUrl = baseUrlService.getBaseUrl({ subdomain: 'test' });
   }
 
   title = '@mintplayer/ng-share-buttons';
