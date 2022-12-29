@@ -1,5 +1,5 @@
 import { LocationStrategy } from '@angular/common';
-import { Directive, Input } from '@angular/core';
+import { Attribute, Directive, ElementRef, Input, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink, UrlTree } from '@angular/router';
 import { AdvancedRouter } from '../../services/advanced-router/advanced-router.service';
 
@@ -11,10 +11,13 @@ export class AdvancedRouterLinkDirective extends RouterLink {
   constructor(
     private advancedRouter: AdvancedRouter,
     private nativeRoute: ActivatedRoute,
+    @Attribute('tabindex') tabIndexAttribute: string|null|undefined,
     nativeRouter: Router,
+    renderer: Renderer2,
+    element: ElementRef,
     nativeLocationStrategy: LocationStrategy
   ) {
-    super(nativeRouter, nativeRoute, nativeLocationStrategy);
+    super(nativeRouter, nativeRoute, tabIndexAttribute, renderer, element, nativeLocationStrategy);
   }
 
   private nativeCommands: any[] = [];
