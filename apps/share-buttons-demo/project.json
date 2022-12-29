@@ -1,4 +1,5 @@
 {
+  "name": "share-buttons-demo",
   "$schema": "..\\..\\node_modules\\nx\\schemas\\project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/share-buttons-demo/src",
@@ -84,7 +85,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/share-buttons-demo"],
+      "outputs": ["{workspaceRoot}/coverage/apps/share-buttons-demo"],
       "options": {
         "jestConfig": "apps/share-buttons-demo/jest.config.ts",
         "passWithNoTests": true
