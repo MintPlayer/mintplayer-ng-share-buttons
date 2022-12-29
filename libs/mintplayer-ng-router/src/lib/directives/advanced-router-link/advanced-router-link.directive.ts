@@ -1,12 +1,12 @@
 import { LocationStrategy } from '@angular/common';
 import { Directive, Input } from '@angular/core';
-import { ActivatedRoute, Router, RouterLinkWithHref, UrlTree } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, UrlTree } from '@angular/router';
 import { AdvancedRouter } from '../../services/advanced-router/advanced-router.service';
 
 // See https://github.com/angular/angular/blob/master/packages/router/src/directives/router_link.ts#L256
 
 @Directive({selector: 'a[advRouterLink],area[advRouterLink]'})
-export class AdvancedRouterLinkDirective extends RouterLinkWithHref {
+export class AdvancedRouterLinkDirective extends RouterLink {
 
   constructor(
     private advancedRouter: AdvancedRouter,
