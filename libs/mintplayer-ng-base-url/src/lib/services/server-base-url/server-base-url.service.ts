@@ -1,6 +1,6 @@
 import { Inject, Injectable, Optional } from '@angular/core';
-import { BootFuncParams } from '../../interfaces';
-import { BOOT_FUNC_PARAMS } from '../../providers';
+import { BootFuncParams } from '../../interfaces/boot-func-params';
+import { BOOT_FUNC_PARAMS } from '../../providers/boot-func-params.provider';
 
 @Injectable({
   providedIn: 'root'
