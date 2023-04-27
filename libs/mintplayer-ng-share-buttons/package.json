@@ -1,6 +1,6 @@
 {
   "name": "@mintplayer/ng-share-buttons",
-  "version": "15.2.0",
+  "version": "15.2.1",
   "private": false,
   "repository": {
     "type": "git",
@@ -11,7 +11,7 @@
     "@angular/common": "^15.2.0",
     "@angular/core": "^15.2.0",
     "@angular/router": "^15.2.0",
-    "rxjs": "^7.4.0",
+    "rxjs": "^7.8.0",
     "@mintplayer/ng-router-provider": "^15.2.0"
   },
   "dependencies": {
