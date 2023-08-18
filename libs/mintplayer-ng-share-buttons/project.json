@@ -6,11 +6,12 @@
   "prefix": "mintplayer-ng-share-buttons",
   "targets": {
     "build": {
-      "executor": "@nrwl/angular:package",
+      "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/libs/mintplayer-ng-share-buttons"],
       "options": {
         "project": "libs/mintplayer-ng-share-buttons/ng-package.json",
-        "tsConfig": "libs/mintplayer-ng-share-buttons/tsconfig.lib.json"
+        "tsConfig": "libs/mintplayer-ng-share-buttons/tsconfig.lib.json",
+        "updateBuildableProjectDepsInPackageJson": true
       },
       "configurations": {
         "production": {
@@ -23,7 +24,7 @@
       "defaultConfiguration": "production"
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/mintplayer-ng-share-buttons"],
       "options": {
         "jestConfig": "libs/mintplayer-ng-share-buttons/jest.config.ts",
@@ -31,7 +32,7 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "options": {
         "lintFilePatterns": [
           "libs/mintplayer-ng-share-buttons/src/**/*.ts",
