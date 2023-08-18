@@ -75,7 +75,7 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "options": {
         "lintFilePatterns": [
           "apps/share-buttons-demo/src/**/*.ts",
@@ -84,7 +84,7 @@
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/apps/share-buttons-demo"],
       "options": {
         "jestConfig": "apps/share-buttons-demo/jest.config.ts",
