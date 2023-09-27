@@ -23,7 +23,7 @@
     "rxjs": "~7.8.1",
     "tslib": "^2.0.0",
     "zone.js": "~0.13.1",
-    "@nx/angular": "16.7.1"
+    "@nx/angular": "16.9.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~16.2.0",
@@ -45,7 +45,7 @@
     "jest-environment-jsdom": "29.5.0",
     "jest-preset-angular": "13.1.1",
     "ng-packagr": "^16.2.0",
-    "nx": "16.7.1",
+    "nx": "16.9.1",
     "postcss": "^8.4.5",
     "postcss-import": "^14.1.0",
     "postcss-preset-env": "^7.5.0",
@@ -53,11 +53,11 @@
     "prettier": "^2.6.2",
     "ts-jest": "29.1.1",
     "typescript": "~5.1.6",
-    "nx-cloud": "16.4.0-beta.1",
-    "@nx/workspace": "16.7.1",
-    "@nx/linter": "16.7.1",
-    "@nx/cypress": "16.7.1",
-    "@nx/eslint-plugin": "16.7.1",
-    "@nx/jest": "16.7.1"
+    "nx-cloud": "16.4.0",
+    "@nx/workspace": "16.9.1",
+    "@nx/linter": "16.9.1",
+    "@nx/cypress": "16.9.1",
+    "@nx/eslint-plugin": "16.9.1",
+    "@nx/jest": "16.9.1"
   }
 }
