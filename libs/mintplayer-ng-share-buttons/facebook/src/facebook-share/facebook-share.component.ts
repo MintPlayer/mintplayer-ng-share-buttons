@@ -4,14 +4,12 @@ import { Params } from '@angular/router';
 import { BehaviorSubject, combineLatest, Subject, filter, take } from 'rxjs';
 import { ScriptLoader } from '@mintplayer/ng-script-loader';
 import { ExternalUrlService } from '@mintplayer/ng-share-buttons';
-import { AdvancedRouterModule } from '@mintplayer/ng-router';
 
 @Component({
   selector: 'facebook-share',
   templateUrl: './facebook-share.component.html',
   styleUrls: ['./facebook-share.component.scss'],
   standalone: true,
-  imports: [AdvancedRouterModule]
 })
 export class FacebookShareComponent implements AfterViewInit {
 

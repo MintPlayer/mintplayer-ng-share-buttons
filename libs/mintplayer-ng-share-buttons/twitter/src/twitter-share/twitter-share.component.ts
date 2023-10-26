@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Params } from '@angular/router';
-import { AdvancedRouterModule } from '@mintplayer/ng-router';
 import { ScriptLoader } from '@mintplayer/ng-script-loader';
 import { ExternalUrlService } from '@mintplayer/ng-share-buttons';
 import { BehaviorSubject, combineLatest, filter, take } from 'rxjs';
@@ -11,7 +10,6 @@ import { BehaviorSubject, combineLatest, filter, take } from 'rxjs';
   templateUrl: './twitter-share.component.html',
   styleUrls: ['./twitter-share.component.scss'],
   standalone: true,
-  imports: [AdvancedRouterModule]
 })
 export class TwitterShareComponent implements AfterViewInit {
 

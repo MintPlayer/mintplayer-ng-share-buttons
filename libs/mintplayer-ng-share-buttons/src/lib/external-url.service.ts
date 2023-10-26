@@ -1,5 +1,5 @@
 import { LocationStrategy } from '@angular/common';
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import { Params, Router } from '@angular/router';
 import { IRouter, ROUTER } from '@mintplayer/ng-router-provider';
 
@@ -10,8 +10,8 @@ export class ExternalUrlService {
 
   constructor(
     private router: Router,
-    @Inject(ROUTER) private advancedRouter: IRouter,
     private locationStrategy: LocationStrategy,
+    @Optional() @Inject(ROUTER) private advancedRouter?: IRouter,
   ) {}
 
   buildUrl(commands: any[], queryParams: Params | null) {

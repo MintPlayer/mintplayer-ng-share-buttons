@@ -1,6 +1,12 @@
 {
   "name": "@mintplayer/ng-script-loader",
   "version": "16.8.0",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MintPlayer/mintplayer-ng-share-buttons",
+    "directory": "libs/mintplayer-ng-script-loader"
+  },
   "peerDependencies": {
     "@angular/common": "^16.2.0",
     "@angular/core": "^16.2.0"
