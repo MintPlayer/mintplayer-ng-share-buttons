@@ -1,12 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ShareButtonsModule } from '@mintplayer/ng-share-buttons';
+import { FacebookShareComponent } from '@mintplayer/ng-share-buttons/facebook';
+import { TwitterShareComponent } from '@mintplayer/ng-share-buttons/twitter';
+import { LinkedinShareComponent } from '@mintplayer/ng-share-buttons/linkedin';
 
 import { ShowRoutingModule } from './show-routing.module';
 import { ShowComponent } from './show.component';
 
 @NgModule({
   declarations: [ShowComponent],
-  imports: [CommonModule, ShareButtonsModule, ShowRoutingModule],
+  imports: [
+    CommonModule,
+    FacebookShareComponent,
+    TwitterShareComponent,
+    LinkedinShareComponent,
+    ShowRoutingModule
+  ],
 })
 export class ShowModule {}

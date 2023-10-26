@@ -10,8 +10,7 @@
       "outputs": ["{workspaceRoot}/dist/libs/mintplayer-ng-router"],
       "options": {
         "project": "libs/mintplayer-ng-router/ng-package.json",
-        "tsConfig": "libs/mintplayer-ng-router/tsconfig.lib.json",
-        "updateBuildableProjectDepsInPackageJson": true
+        "tsConfig": "libs/mintplayer-ng-router/tsconfig.lib.json"
       },
       "configurations": {
         "production": {
@@ -32,7 +31,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": [
           "libs/mintplayer-ng-router/src/**/*.ts",
