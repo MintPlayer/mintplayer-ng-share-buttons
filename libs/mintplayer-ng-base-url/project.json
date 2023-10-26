@@ -26,6 +26,9 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/mintplayer-ng-base-url"],
       "options": {
+        "codeCoverage": true,
+        "coverageReporters": ["lcovonly"],
+        "coverageDirectory": "coverage/libs/mintplayer-ng-base-url",
         "jestConfig": "libs/mintplayer-ng-base-url/jest.config.ts",
         "passWithNoTests": true
       }
