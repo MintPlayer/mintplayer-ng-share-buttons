@@ -16,10 +16,10 @@ describe('LinkedinShareComponent', () => {
       imports: [
         RouterTestingModule.withRoutes([
           { path: '', component: HomeComponent }
-        ])
+        ]),
+        LinkedinShareComponent,
       ],
       declarations: [
-        LinkedinShareComponent,
         AppComponent,
         HomeComponent
       ],

@@ -1,28 +1,10 @@
-import { Component, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MockComponent } from 'ng-mocks';
+import { FacebookShareComponent } from '@mintplayer/ng-share-buttons/facebook';
+import { TwitterShareComponent } from '@mintplayer/ng-share-buttons/twitter';
+import { LinkedinShareComponent } from '@mintplayer/ng-share-buttons/linkedin';
 import { ShowComponent } from './show.component';
-
-@Component({
-  selector: 'facebook-share',
-})
-class FacebookShareMockComponent {
-  @Input() shareRouterLink: any[] = [];
-}
-
-@Component({
-  selector: 'twitter-share',
-})
-class TwitterShareMockComponent {
-  @Input() shareRouterLink: any[] = [];
-}
-
-@Component({
-  selector: 'linkedin-share',
-})
-class LinkedinShareMockComponent {
-  @Input() shareRouterLink: any[] = [];
-}
 
 describe('ShowComponent', () => {
   let component: ShowComponent;
@@ -38,9 +20,9 @@ describe('ShowComponent', () => {
         ShowComponent,
 
         // Mock dependencies
-        FacebookShareMockComponent,
-        TwitterShareMockComponent,
-        LinkedinShareMockComponent,
+        MockComponent(FacebookShareComponent),
+        MockComponent(TwitterShareComponent),
+        MockComponent(LinkedinShareComponent)
       ],
     }).compileComponents();
   });

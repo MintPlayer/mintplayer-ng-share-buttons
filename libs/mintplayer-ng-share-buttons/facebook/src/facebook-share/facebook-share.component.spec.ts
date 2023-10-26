@@ -16,10 +16,10 @@ describe('FacebookShareComponent', () => {
       imports: [
         RouterTestingModule.withRoutes([
           { path: '', component: HomeComponent }
-        ])
+        ]),
+        FacebookShareComponent,
       ],
       declarations: [
-        FacebookShareComponent,
         AppComponent,
         HomeComponent
       ],

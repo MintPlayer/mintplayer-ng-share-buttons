@@ -16,10 +16,10 @@ describe('TwitterShareComponent', () => {
       imports: [
         RouterTestingModule.withRoutes([
           { path: '', component: HomeComponent }
-        ])
+        ]),
+        TwitterShareComponent,
       ],
       declarations: [
-        TwitterShareComponent,
         AppComponent,
         HomeComponent
       ],
