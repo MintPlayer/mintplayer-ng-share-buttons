@@ -4,7 +4,6 @@ export default {
 
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {},
-  coverageDirectory: '../../coverage/libs/mintplayer-ng-base-url',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

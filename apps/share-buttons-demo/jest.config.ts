@@ -4,7 +4,6 @@ export default {
 
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {},
-  coverageDirectory: '../../coverage/apps/share-buttons-demo',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

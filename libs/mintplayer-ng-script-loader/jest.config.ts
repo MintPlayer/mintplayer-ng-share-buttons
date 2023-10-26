@@ -3,7 +3,6 @@ export default {
   displayName: 'mintplayer-ng-script-loader',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../coverage/libs/mintplayer-ng-script-loader',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
