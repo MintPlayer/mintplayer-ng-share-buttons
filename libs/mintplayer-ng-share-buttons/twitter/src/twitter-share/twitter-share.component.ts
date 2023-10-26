@@ -1,40 +1,43 @@
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Params } from '@angular/router';
-import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
-import { filter, take, takeUntil } from 'rxjs/operators';
-import { ExternalUrlService } from '../../services/external-url/external-url.service';
-import { TwitterSdkService } from '../../services/twitter-sdk/twitter-sdk.service';
+import { AdvancedRouterModule } from '@mintplayer/ng-router';
+import { ScriptLoader } from '@mintplayer/ng-script-loader';
+import { ExternalUrlService } from '@mintplayer/ng-share-buttons';
+import { BehaviorSubject, combineLatest, filter, take } from 'rxjs';
 
 @Component({
   selector: 'twitter-share',
   templateUrl: './twitter-share.component.html',
-  styleUrls: ['./twitter-share.component.scss']
+  styleUrls: ['./twitter-share.component.scss'],
+  standalone: true,
+  imports: [AdvancedRouterModule]
 })
-export class TwitterShareComponent implements OnDestroy, AfterViewInit {
+export class TwitterShareComponent implements AfterViewInit {
 
   constructor(
-    private twitterSdk: TwitterSdkService,
+    private scriptLoader: ScriptLoader,
     private externalUrlService: ExternalUrlService
   ) {
-    this.isViewInited$
-      .pipe(filter(i => !!i), take(1))
-      .subscribe((inited) => {
-        this.twitterSdk.loadTwitterSdk();
+    combineLatest([this.isViewInited$, this.commands$])
+      .pipe(filter(([isViewInited, commands]) => !!isViewInited && !!commands))
+      .pipe(takeUntilDestroyed())
+      .subscribe(([isViewInited, commands]) => {
+        this.scriptLoader.loadScript('https://platform.twitter.com/widgets.js')
+          .then((params) => this.sdkReady$.next(true));
       });
     
-    combineLatest([this.twitterSdk.twitterSdkReady$.pipe(filter(r => !!r), take(1)), this.commands$, this.queryParams$])
-      .pipe(filter(([ready, commands]) => !!ready))
-      .pipe(takeUntil(this.destroyed$))
+    combineLatest([this.sdkReady$.pipe(filter(r => !!r), take(1)), this.commands$, this.queryParams$])
+      .pipe(takeUntilDestroyed())
       .subscribe(([r, commands, queryParams]) => {
         // Update href
-        const href = this.externalUrlService.buildUrl(commands, queryParams);
-        console.log('twitter href', href);
+        const href = this.externalUrlService.buildUrl(commands!, queryParams);
         this.href$.next(href);
       });
     
     this.href$
       .pipe(filter((href) => !!href))
-      .pipe(takeUntil(this.destroyed$))
+      .pipe(takeUntilDestroyed())
       .subscribe((href) => {
         if (typeof window !== 'undefined') {
           setTimeout(() => {
@@ -45,8 +48,9 @@ export class TwitterShareComponent implements OnDestroy, AfterViewInit {
       });
   }
 
-  private destroyed$ = new Subject();
   private isViewInited$ = new BehaviorSubject<boolean>(false);
+  private sdkReady$ = new BehaviorSubject<boolean>(false);
+
   private commands$ = new BehaviorSubject<any[]>([]);
   private queryParams$ = new BehaviorSubject<Params>({});
   private href$ = new BehaviorSubject<string | null>(null);
@@ -76,12 +80,7 @@ export class TwitterShareComponent implements OnDestroy, AfterViewInit {
   
   @ViewChild('wrapper') wrapper!: ElementRef<HTMLDivElement>;
 
-  ngOnDestroy() {
-    this.destroyed$.next(true);
-  }
-
   ngAfterViewInit() {
     this.isViewInited$.next(true);
   }
-
 }

@@ -1,39 +1,44 @@
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core';
-import { filter, take, takeUntil } from 'rxjs/operators';
-import { FacebookSdkService } from '../../services/facebook-sdk/facebook-sdk.service';
-import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
+import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Params } from '@angular/router';
-import { ExternalUrlService } from '../../services/external-url/external-url.service';
+import { BehaviorSubject, combineLatest, Subject, filter, take } from 'rxjs';
+import { ScriptLoader } from '@mintplayer/ng-script-loader';
+import { ExternalUrlService } from '@mintplayer/ng-share-buttons';
+import { AdvancedRouterModule } from '@mintplayer/ng-router';
 
 @Component({
   selector: 'facebook-share',
   templateUrl: './facebook-share.component.html',
-  styleUrls: ['./facebook-share.component.scss']
+  styleUrls: ['./facebook-share.component.scss'],
+  standalone: true,
+  imports: [AdvancedRouterModule]
 })
-export class FacebookShareComponent implements OnDestroy, AfterViewInit {
+export class FacebookShareComponent implements AfterViewInit {
 
   constructor(
-    private facebookSdk: FacebookSdkService,
+    private scriptLoader: ScriptLoader,
     private externalUrlService: ExternalUrlService
   ) {
-    this.isViewInited$
-      .pipe(filter(i => !!i), take(1))
-      .subscribe((inited) => {
-        this.facebookSdk.loadFacebookSdk();
+    combineLatest([this.isViewInited$, this.commands$])
+      .pipe(filter(([isViewInited, commands]) => !!isViewInited && !!commands))
+      .pipe(takeUntilDestroyed())
+      .subscribe(([isViewInited, commands]) => {
+        this.scriptLoader.loadScript('https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0', 'fbAsyncInit')
+          .then((params) => this.sdkReady$.next(true));
       });
-    
-    combineLatest([this.facebookSdk.facebookSdkReady$.pipe(filter(r => !!r), take(1)), this.commands$, this.queryParams$])
-      .pipe(filter(([ready, commands]) => !!ready))
-      .pipe(takeUntil(this.destroyed$))
+
+
+    combineLatest([this.sdkReady$.pipe(filter(r => !!r), take(1)), this.commands$, this.queryParams$])
+      .pipe(takeUntilDestroyed())
       .subscribe(([r, commands, queryParams]) => {
         // Update href
-        const href = this.externalUrlService.buildUrl(commands, queryParams);
+        const href = this.externalUrlService.buildUrl(commands!, queryParams);
         this.href$.next(href);
       });
     
     this.href$
       .pipe(filter((href) => !!href))
-      .pipe(takeUntil(this.destroyed$))
+      .pipe(takeUntilDestroyed())
       .subscribe((href) => {
         if (typeof window !== 'undefined') {
           setTimeout(() => {
@@ -44,13 +49,10 @@ export class FacebookShareComponent implements OnDestroy, AfterViewInit {
       });
   }
 
-  ngOnDestroy() {
-    this.destroyed$.next(true);
-  }
-
-  private destroyed$ = new Subject();
   private isViewInited$ = new BehaviorSubject<boolean>(false);
-  private commands$ = new BehaviorSubject<any[]>([]);
+  private sdkReady$ = new BehaviorSubject<boolean>(false);
+  
+  private commands$ = new BehaviorSubject<any[] | null>(null);
   private queryParams$ = new BehaviorSubject<Params>({});
   private href$ = new BehaviorSubject<string | null>(null);
 

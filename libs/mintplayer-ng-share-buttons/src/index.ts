@@ -1,2 +1,1 @@
-export * from './lib/share-buttons.module';
-export * from './lib/components';
+export * from './lib/external-url.service';

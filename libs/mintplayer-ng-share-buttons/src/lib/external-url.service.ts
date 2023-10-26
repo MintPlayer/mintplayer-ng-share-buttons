@@ -11,12 +11,11 @@ export class ExternalUrlService {
   constructor(
     private router: Router,
     @Inject(ROUTER) private advancedRouter: IRouter,
-    private locationStrategy: LocationStrategy
+    private locationStrategy: LocationStrategy,
   ) {}
 
   buildUrl(commands: any[], queryParams: Params | null) {
     const router = this.advancedRouter || this.router;
-
     if ((commands.length === 1) && (/https?:\/\//.test(commands[0]))) {
       const href = commands[0];
       return href;
