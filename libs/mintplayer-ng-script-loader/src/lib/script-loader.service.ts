@@ -1,5 +1,6 @@
 import { DOCUMENT, isPlatformServer } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID, Renderer2, RendererFactory2 } from '@angular/core';
+import { ScriptLoadOptions } from './script-load-options';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class ScriptLoader {
   renderer: Renderer2;
   allScripts = new Map<string, ScriptInformation>();
 
-  public loadScript(src: string, windowCallback?: string) {
+  public loadScript(src: string, options?: ScriptLoadOptions) {
     return new Promise<any[]>((resolve, reject) => {
       src = src.replace('"', '');
       // Only act if in the browser
@@ -58,10 +59,17 @@ export class ScriptLoader {
         // scriptTag.type = 'text/javascript';
         scriptTag.src = src;
         scriptInfo.tag = scriptTag;
+ 
+        if (options?.async) {
+          scriptTag.async = true
+        }
+        if (options?.defer) {
+          scriptTag.defer = true;
+        }
 
         // Setup callback
-        if (windowCallback) {
-          (<any>window)[windowCallback] = (...args: any[]) => {
+        if (options?.windowCallback) {
+          (<any>window)[options.windowCallback] = (...args: any[]) => {
             scriptInfo.fullyLoaded = true;
             scriptInfo.receivedArgs = args;
             scriptInfo.promisesToResolve.forEach((p) => p(args));
