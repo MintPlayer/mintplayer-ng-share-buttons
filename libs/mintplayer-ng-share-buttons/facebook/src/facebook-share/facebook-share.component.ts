@@ -21,7 +21,7 @@ export class FacebookShareComponent implements AfterViewInit {
       .pipe(filter(([isViewInited, commands]) => !!isViewInited && !!commands))
       .pipe(takeUntilDestroyed())
       .subscribe(([isViewInited, commands]) => {
-        this.scriptLoader.loadScript('https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0', 'fbAsyncInit')
+        this.scriptLoader.loadScript('https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0', { windowCallback: 'fbAsyncInit'})
           .then((params) => this.sdkReady$.next(true));
       });
 
