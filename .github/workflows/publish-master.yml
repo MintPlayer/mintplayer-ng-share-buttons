@@ -105,17 +105,11 @@ jobs:
         token: ${{ github.token }}
         access: 'public'
 
-    ## ng-script-loader
-    - name: Upload code coverage report
-      uses: codecov/codecov-action@v1
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        directory: ./coverage/libs/mintplayer-ng-script-loader
-      
+    ## script-loader
     - name: Push to NPM
       uses: JS-DevTools/npm-publish@v1
       with:
-        package: 'dist/libs/mintplayer-ng-script-loader/package.json'
+        package: 'dist/libs/mintplayer-script-loader/package.json'
         registry: 'https://registry.npmjs.org'
         token: ${{ secrets.PUBLISH_NODE_TO_NPMJS_COM }}
         access: 'public'
@@ -123,7 +117,7 @@ jobs:
     - name: Push to Github
       uses: JS-DevTools/npm-publish@v1
       with:
-        package: 'dist/libs/mintplayer-ng-script-loader/package.json'
+        package: 'dist/libs/mintplayer-script-loader/package.json'
         registry: 'https://npm.pkg.github.com'
         token: ${{ github.token }}
         access: 'public'

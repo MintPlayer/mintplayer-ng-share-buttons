@@ -12,7 +12,7 @@
     "@angular/core": "^16.0.0",
     "@angular/router": "^16.0.0",
     "@mintplayer/ng-router-provider": "^16.2.0",
-    "@mintplayer/ng-script-loader": "^16.0.0",
+    "@mintplayer/script-loader": "^1.0.0",
     "rxjs": "^7.8.0"
   },
   "dependencies": {

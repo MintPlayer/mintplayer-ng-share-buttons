@@ -20,7 +20,7 @@ export class LinkedinShareComponent implements AfterViewInit {
       .pipe(filter(([isViewInited, commands]) => !!isViewInited && !!commands))
       .pipe(takeUntilDestroyed())
       .subscribe(([isViewInited, commands]) => {
-        loadScript('//platform.linkedin.com/in.js')
+        loadScript('https://platform.linkedin.com/in.js')
           .then((...params) => this.sdkReady$.next(true));
       });
 
