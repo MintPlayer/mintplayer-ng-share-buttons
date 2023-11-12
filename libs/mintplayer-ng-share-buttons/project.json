@@ -1,5 +1,5 @@
 {
-  "name": "mintplayer-ng-share-buttons",
+  "name": "mintplayer-ng-share-buttons-demo",
   "$schema": "..\\..\\node_modules\\nx\\schemas\\project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/mintplayer-ng-share-buttons/src",
