@@ -20,8 +20,8 @@
       "@mintplayer/ng-router-provider": [
         "libs/mintplayer-ng-router-provider/src/index.ts"
       ],
-      "@mintplayer/ng-script-loader": [
-        "libs/mintplayer-ng-script-loader/src/index.ts"
+      "@mintplayer/script-loader": [
+        "libs/mintplayer-script-loader/src/index.ts"
       ],
       "@mintplayer/ng-share-buttons": [
         "libs/mintplayer-ng-share-buttons/src/index.ts"
