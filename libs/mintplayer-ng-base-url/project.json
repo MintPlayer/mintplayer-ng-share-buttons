@@ -3,7 +3,7 @@
   "$schema": "..\\..\\node_modules\\nx\\schemas\\project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/mintplayer-ng-base-url/src",
-  "prefix": "mintplayer-ng-share-buttons",
+  "prefix": "mintplayer-ng-base-url",
   "targets": {
     "build": {
       "executor": "@nx/angular:package",

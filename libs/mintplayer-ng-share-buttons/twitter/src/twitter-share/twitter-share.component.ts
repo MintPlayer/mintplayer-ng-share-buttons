@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Params } from '@angular/router';
-import { ScriptLoader } from '@mintplayer/ng-script-loader';
+import { loadScript } from '@mintplayer/script-loader';
 import { ExternalUrlService } from '@mintplayer/ng-share-buttons';
 import { BehaviorSubject, combineLatest, filter, take } from 'rxjs';
 
@@ -14,14 +14,13 @@ import { BehaviorSubject, combineLatest, filter, take } from 'rxjs';
 export class TwitterShareComponent implements AfterViewInit {
 
   constructor(
-    private scriptLoader: ScriptLoader,
     private externalUrlService: ExternalUrlService
   ) {
     combineLatest([this.isViewInited$, this.commands$])
       .pipe(filter(([isViewInited, commands]) => !!isViewInited && !!commands))
       .pipe(takeUntilDestroyed())
       .subscribe(([isViewInited, commands]) => {
-        this.scriptLoader.loadScript('https://platform.twitter.com/widgets.js')
+        loadScript('https://platform.twitter.com/widgets.js')
           .then((params) => this.sdkReady$.next(true));
       });
     

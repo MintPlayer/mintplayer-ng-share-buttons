@@ -21,7 +21,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "mintplayer-ng-share-buttons",
+            "prefix": "mintplayer-ng-router",
             "style": "kebab-case"
           }
         ]

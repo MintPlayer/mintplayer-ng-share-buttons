@@ -1,9 +1,9 @@
 {
-  "name": "share-buttons-demo",
+  "name": "mintplayer-ng-share-buttons",
   "$schema": "..\\..\\node_modules\\nx\\schemas\\project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/share-buttons-demo/src",
-  "prefix": "mintplayer-ng-share-buttons",
+  "prefix": "mintplayer-ng-share-buttons-demo",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
