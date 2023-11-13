@@ -7,7 +7,10 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
   cancel-in-progress: true
-      
+
+permissions: 
+  contents: read
+
 jobs:
   build:
   
@@ -16,6 +19,7 @@ jobs:
     
     permissions: 
       contents: read
+      id-token: write
       packages: write 
     
     steps:
@@ -44,20 +48,22 @@ jobs:
         directory: ./coverage/libs/mintplayer-ng-base-url
       
     - name: Push to NPM
-      uses: JS-DevTools/npm-publish@v1
+      uses: JS-DevTools/npm-publish@v3
       with:
         package: 'dist/libs/mintplayer-ng-base-url/package.json'
         registry: 'https://registry.npmjs.org'
         token: ${{ secrets.PUBLISH_NODE_TO_NPMJS_COM }}
         access: 'public'
+        provenance: true
 
     - name: Push to Github
-      uses: JS-DevTools/npm-publish@v1
+      uses: JS-DevTools/npm-publish@v3
       with:
         package: 'dist/libs/mintplayer-ng-base-url/package.json'
         registry: 'https://npm.pkg.github.com'
         token: ${{ github.token }}
         access: 'public'
+        provenance: true
 
     ## ng-router-provider
     - name: Upload code coverage report
@@ -67,20 +73,22 @@ jobs:
         directory: ./coverage/libs/mintplayer-ng-router-provider
       
     - name: Push to NPM
-      uses: JS-DevTools/npm-publish@v1
+      uses: JS-DevTools/npm-publish@v3
       with:
         package: 'dist/libs/mintplayer-ng-router-provider/package.json'
         registry: 'https://registry.npmjs.org'
         token: ${{ secrets.PUBLISH_NODE_TO_NPMJS_COM }}
         access: 'public'
+        provenance: true
 
     - name: Push to Github
-      uses: JS-DevTools/npm-publish@v1
+      uses: JS-DevTools/npm-publish@v3
       with:
         package: 'dist/libs/mintplayer-ng-router-provider/package.json'
         registry: 'https://npm.pkg.github.com'
         token: ${{ github.token }}
         access: 'public'
+        provenance: true
 
     ## ng-router
     - name: Upload code coverage report
@@ -90,37 +98,41 @@ jobs:
         directory: ./coverage/libs/mintplayer-ng-router
       
     - name: Push to NPM
-      uses: JS-DevTools/npm-publish@v1
+      uses: JS-DevTools/npm-publish@v3
       with:
         package: 'dist/libs/mintplayer-ng-router/package.json'
         registry: 'https://registry.npmjs.org'
         token: ${{ secrets.PUBLISH_NODE_TO_NPMJS_COM }}
         access: 'public'
+        provenance: true
 
     - name: Push to Github
-      uses: JS-DevTools/npm-publish@v1
+      uses: JS-DevTools/npm-publish@v3
       with:
         package: 'dist/libs/mintplayer-ng-router/package.json'
         registry: 'https://npm.pkg.github.com'
         token: ${{ github.token }}
         access: 'public'
+        provenance: true
 
     ## script-loader
     - name: Push to NPM
-      uses: JS-DevTools/npm-publish@v1
+      uses: JS-DevTools/npm-publish@v3
       with:
         package: 'dist/libs/mintplayer-script-loader/package.json'
         registry: 'https://registry.npmjs.org'
         token: ${{ secrets.PUBLISH_NODE_TO_NPMJS_COM }}
         access: 'public'
+        provenance: true
 
     - name: Push to Github
-      uses: JS-DevTools/npm-publish@v1
+      uses: JS-DevTools/npm-publish@v3
       with:
         package: 'dist/libs/mintplayer-script-loader/package.json'
         registry: 'https://npm.pkg.github.com'
         token: ${{ github.token }}
         access: 'public'
+        provenance: true
 
     ## ng-share-buttons
     - name: Upload code coverage report
@@ -130,17 +142,19 @@ jobs:
         directory: ./coverage/libs/mintplayer-ng-share-buttons
       
     - name: Push to NPM
-      uses: JS-DevTools/npm-publish@v1
+      uses: JS-DevTools/npm-publish@v3
       with:
         package: 'dist/libs/mintplayer-ng-share-buttons/package.json'
         registry: 'https://registry.npmjs.org'
         token: ${{ secrets.PUBLISH_NODE_TO_NPMJS_COM }}
         access: 'public'
+        provenance: true
 
     - name: Push to Github
-      uses: JS-DevTools/npm-publish@v1
+      uses: JS-DevTools/npm-publish@v3
       with:
         package: 'dist/libs/mintplayer-ng-share-buttons/package.json'
         registry: 'https://npm.pkg.github.com'
         token: ${{ github.token }}
         access: 'public'
+        provenance: true
