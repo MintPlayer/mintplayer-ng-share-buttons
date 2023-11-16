@@ -31,8 +31,7 @@
         "codeCoverage": true,
         "coverageReporters": ["lcovonly"],
         "coverageDirectory": "coverage/libs/mintplayer-ng-router-provider",
-        "jestConfig": "libs/mintplayer-ng-router-provider/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/mintplayer-ng-router-provider/jest.config.ts"
       }
     },
     "lint": {
