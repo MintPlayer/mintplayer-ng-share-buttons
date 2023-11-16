@@ -29,8 +29,7 @@
         "codeCoverage": true,
         "coverageReporters": ["lcovonly"],
         "coverageDirectory": "coverage/libs/mintplayer-ng-share-buttons",
-        "jestConfig": "libs/mintplayer-ng-share-buttons/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/mintplayer-ng-share-buttons/jest.config.ts"
       }
     },
     "lint": {

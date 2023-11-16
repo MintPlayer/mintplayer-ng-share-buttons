@@ -60,10 +60,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "share-buttons-demo:build:production"
+          "buildTarget": "share-buttons-demo:build:production"
         },
         "development": {
-          "browserTarget": "share-buttons-demo:build:development"
+          "buildTarget": "share-buttons-demo:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "share-buttons-demo:build"
+        "buildTarget": "share-buttons-demo:build"
       }
     },
     "lint": {
@@ -87,8 +87,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/apps/share-buttons-demo"],
       "options": {
-        "jestConfig": "apps/share-buttons-demo/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "apps/share-buttons-demo/jest.config.ts"
       }
     }
   },

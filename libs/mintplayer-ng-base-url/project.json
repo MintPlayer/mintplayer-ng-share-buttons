@@ -29,8 +29,7 @@
         "codeCoverage": true,
         "coverageReporters": ["lcovonly"],
         "coverageDirectory": "coverage/libs/mintplayer-ng-base-url",
-        "jestConfig": "libs/mintplayer-ng-base-url/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/mintplayer-ng-base-url/jest.config.ts"
       }
     },
     "lint": {

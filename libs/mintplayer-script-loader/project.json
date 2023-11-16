@@ -40,14 +40,7 @@
         "codeCoverage": true,
         "coverageReporters": ["lcovonly"],
         "coverageDirectory": "coverage/libs/mintplayer-script-loader",
-        "jestConfig": "libs/mintplayer-script-loader/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
+        "jestConfig": "libs/mintplayer-script-loader/jest.config.ts"
       }
     }
   },
