@@ -1,7 +1,9 @@
 import { LocationStrategy } from '@angular/common';
-import { Attribute, Directive, ElementRef, Input, Renderer2 } from '@angular/core';
+import { Attribute, Directive, ElementRef, HostListener, Inject, Input, Optional, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink, UrlTree } from '@angular/router';
 import { AdvancedRouter } from '../../services/advanced-router/advanced-router.service';
+import { ADVANCED_ROUTER_CONFIG } from '../../providers/advanced-router-config.provider';
+import { AdvancedRouterConfig } from '../../interfaces/advanced-router-config';
 
 // See https://github.com/angular/angular/blob/master/packages/router/src/directives/router_link.ts#L256
 
@@ -15,7 +17,8 @@ export class AdvancedRouterLinkDirective extends RouterLink {
     nativeRouter: Router,
     renderer: Renderer2,
     element: ElementRef,
-    nativeLocationStrategy: LocationStrategy
+    nativeLocationStrategy: LocationStrategy,
+    @Optional() @Inject(ADVANCED_ROUTER_CONFIG) private advancedRouterConfig?: AdvancedRouterConfig
   ) {
     super(nativeRouter, nativeRoute, tabIndexAttribute, renderer, element, nativeLocationStrategy);
   }
@@ -50,7 +53,24 @@ export class AdvancedRouterLinkDirective extends RouterLink {
       preserveFragment: this.attrBoolValue(this.preserveFragment),
     });
   }
-  
+
+  // @HostListener('click', ['$event.button', '$event.ctrlKey', '$event.metaKey', '$event.shiftKey'])
+  override onClick(button: number, ctrlKey: boolean, shiftKey: boolean, altKey: boolean, metaKey: boolean) {
+    // clone the checks being made in super()
+    if (button !== 0 || ctrlKey || metaKey || shiftKey) {
+        return true;
+    }
+
+    if (typeof this.target === 'string' && this.target !== '_self') {
+        return true;
+    }
+
+    const delay = this.advancedRouterConfig?.navigationDelay ?? 0;
+    setTimeout(() => super.onClick(button, ctrlKey, shiftKey, altKey, metaKey), delay);
+
+    return false;
+  }
+
   private attrBoolValue(s: any) {
     return s === '' || !!s;
   }
