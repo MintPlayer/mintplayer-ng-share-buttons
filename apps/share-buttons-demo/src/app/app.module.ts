@@ -4,7 +4,7 @@ import { BaseUrlModule } from '@mintplayer/ng-base-url';
 import { FacebookShareComponent } from '@mintplayer/ng-share-buttons/facebook';
 import { TwitterShareComponent } from '@mintplayer/ng-share-buttons/twitter';
 import { LinkedinShareComponent } from '@mintplayer/ng-share-buttons/linkedin';
-import { AdvancedRouterModule } from '@mintplayer/ng-router';
+import { ADVANCED_ROUTER_CONFIG, AdvancedRouterConfig, AdvancedRouterModule } from '@mintplayer/ng-router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,7 +24,12 @@ import { AppComponent } from './app.component';
     AdvancedRouterModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [{
+    provide: ADVANCED_ROUTER_CONFIG,
+    useValue: <AdvancedRouterConfig>{
+      navigationDelay: 1000
+    }
+  }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

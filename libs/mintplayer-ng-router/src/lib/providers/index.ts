@@ -1,1 +1,1 @@
-export * from './query-params-config.provider';
+export * from './advanced-router-config.provider';

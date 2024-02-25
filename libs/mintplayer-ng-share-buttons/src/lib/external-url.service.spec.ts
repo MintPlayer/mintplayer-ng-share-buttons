@@ -3,7 +3,7 @@ import { Component, Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { Router, UrlCreationOptions, UrlSegment, UrlSegmentGroup, UrlTree } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { QueryParamsConfig, QUERY_PARAMS_CONFIG } from '@mintplayer/ng-router';
+import { ADVANCED_ROUTER_CONFIG, AdvancedRouterConfig } from '@mintplayer/ng-router';
 import { ROUTER } from '@mintplayer/ng-router-provider';
 
 import { ExternalUrlService } from './external-url.service';
@@ -28,8 +28,8 @@ describe('ExternalUrlService', () => {
         provide: APP_BASE_HREF,
         useValue: 'http://localhost/'
       }, {
-        provide: QUERY_PARAMS_CONFIG,
-        useValue: <QueryParamsConfig>{ }
+        provide: ADVANCED_ROUTER_CONFIG,
+        useValue: <AdvancedRouterConfig>{ }
       }]
     });
     service = TestBed.inject(ExternalUrlService);
@@ -44,7 +44,7 @@ describe('ExternalUrlService', () => {
   providedIn: 'root'
 })
 class MockAdvancedRouter {
-  
+
   constructor(private router: Router) {
   }
 
