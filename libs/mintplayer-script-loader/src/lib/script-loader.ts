@@ -2,16 +2,18 @@ import { ScriptLoadOptions } from './script-load-options';
 
 const allScripts = new Map<string, ScriptInformation>();
 
-document.onreadystatechange = () => {
-  document.querySelectorAll('script[src]').forEach((tag) => {
-    const scriptTag = <HTMLScriptElement>tag;
-    allScripts.set(scriptTag.src, {
-      tag: scriptTag,
-      fullyLoaded: true,
-      initiallyLoaded: true,
-      promisesToResolve: [],
+if (typeof document !== 'undefined') {
+  document.onreadystatechange = () => {
+    document.querySelectorAll('script[src]').forEach((tag) => {
+      const scriptTag = <HTMLScriptElement>tag;
+      allScripts.set(scriptTag.src, {
+        tag: scriptTag,
+        fullyLoaded: true,
+        initiallyLoaded: true,
+        promisesToResolve: [],
+      });
     });
-  });
+  }
 }
 
 export function loadScript(src: string, options?: ScriptLoadOptions) {
