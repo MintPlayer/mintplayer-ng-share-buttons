@@ -1,9 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AdvancedRouter } from './advanced-router.service';
-import { QueryParamsConfig } from '../../interfaces/query-params-config';
-import { QUERY_PARAMS_CONFIG } from '../../providers/query-params-config.provider';
 import { AdvancedRouterModule } from '../../advanced-router.module';
+import { ADVANCED_ROUTER_CONFIG } from '../../providers/index';
 
 // OK
 describe('Router', () => {
@@ -16,7 +15,7 @@ describe('Router', () => {
         AdvancedRouterModule
       ],
       providers: [{
-        provide: QUERY_PARAMS_CONFIG,
+        provide: ADVANCED_ROUTER_CONFIG,
         useValue: <QueryParamsConfig>{
           'lang': 'preserve',
           'return-url': '',

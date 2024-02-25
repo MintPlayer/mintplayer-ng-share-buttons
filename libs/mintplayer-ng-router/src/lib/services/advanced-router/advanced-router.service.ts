@@ -2,16 +2,16 @@ import { Inject, Injectable, Optional } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 import { ActivatedRoute, NavigationBehaviorOptions, NavigationExtras, Params, Router, UrlCreationOptions, UrlTree } from '@angular/router';
 import { IRouter } from '@mintplayer/ng-router-provider';
-import { QueryParamsConfig } from '../../interfaces/query-params-config';
-import { QUERY_PARAMS_CONFIG } from '../../providers/query-params-config.provider';
+import { AdvancedRouterConfig } from '../../interfaces/advanced-router-config';
 import { UrlWithQueryParams } from '../../interfaces/url-with-query-params';
+import { ADVANCED_ROUTER_CONFIG } from '../../providers/advanced-router-config.provider';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdvancedRouter implements IRouter {
 
-  constructor(private router: Router, private route: ActivatedRoute, @Optional() @Inject(QUERY_PARAMS_CONFIG) private queryParamsConfig?: QueryParamsConfig) {
+  constructor(private router: Router, private route: ActivatedRoute, @Optional() @Inject(ADVANCED_ROUTER_CONFIG) private advancedRouterConfig?: AdvancedRouterConfig) {
   }
 
   /**
@@ -94,7 +94,7 @@ export class AdvancedRouter implements IRouter {
 
     return this.router.navigateByUrl(newUrl, extras);
   }
-  
+
   /**
    * Appends URL segments to the current URL tree to create a new URL tree.
    *
@@ -223,8 +223,8 @@ export class AdvancedRouter implements IRouter {
    * @returns The new value for the specified query parameter.
    */
   private getQueryParameterValue(currentParams: Params, requestedParams: Params, key: string) {
-    if (this.queryParamsConfig) {
-      switch (this.queryParamsConfig[key]) {
+    if (this.advancedRouterConfig && this.advancedRouterConfig.queryParams) {
+      switch (this.advancedRouterConfig.queryParams[key]) {
         case 'preserve':
           // Take requested value if present, else take current.
 
