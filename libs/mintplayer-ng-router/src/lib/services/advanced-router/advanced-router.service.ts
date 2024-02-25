@@ -44,8 +44,12 @@ export class AdvancedRouter implements IRouter {
    * @see [Routing and Navigation guide](guide/router)
    *
    */
-  public navigate(commands: any[], extras?: NavigationExtras) {
+  public async navigate(commands: any[], extras?: NavigationExtras) {
     const newParams = this.computeQueryParameters(this.route.snapshot.queryParams, extras?.queryParams);
+
+    const delay = this.advancedRouterConfig?.navigationDelay ?? 0;
+    await new Promise(resolve => setTimeout(resolve, delay));
+
     return this.router.navigate(commands, { ...extras, queryParams: newParams });
   }
 
@@ -73,7 +77,7 @@ export class AdvancedRouter implements IRouter {
    * @see [Routing and Navigation guide](guide/router)
    *
    */
-  public navigateByUrl(url: string | UrlTree, extras?: NavigationBehaviorOptions) {
+  public async navigateByUrl(url: string | UrlTree, extras?: NavigationBehaviorOptions) {
     // The requested url.
     const urlValue = url instanceof UrlTree
       ? this.router.serializeUrl(url)
@@ -91,6 +95,9 @@ export class AdvancedRouter implements IRouter {
     const newUrl = newParamKeys.length === 0
       ? requestedParams.url
       : `${requestedParams.url}?${newQueryString}`;
+
+    const delay = this.advancedRouterConfig?.navigationDelay ?? 0;
+    await new Promise(resolve => setTimeout(resolve, delay));
 
     return this.router.navigateByUrl(newUrl, extras);
   }

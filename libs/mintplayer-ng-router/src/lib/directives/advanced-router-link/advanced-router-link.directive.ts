@@ -54,7 +54,6 @@ export class AdvancedRouterLinkDirective extends RouterLink {
     });
   }
 
-  // @HostListener('click', ['$event.button', '$event.ctrlKey', '$event.metaKey', '$event.shiftKey'])
   override onClick(button: number, ctrlKey: boolean, shiftKey: boolean, altKey: boolean, metaKey: boolean) {
     // clone the checks being made in super()
     if (button !== 0 || ctrlKey || metaKey || shiftKey) {
