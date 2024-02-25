@@ -3,7 +3,7 @@ import { Component, Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router, UrlCreationOptions, UrlSegment, UrlSegmentGroup, UrlTree } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AdvancedRouter, QueryParamsConfig, QUERY_PARAMS_CONFIG } from '@mintplayer/ng-router';
+import { AdvancedRouter, ADVANCED_ROUTER_CONFIG, AdvancedRouterConfig } from '@mintplayer/ng-router';
 
 import { LinkedinShareComponent } from './linkedin-share.component';
 
@@ -30,8 +30,8 @@ describe('LinkedinShareComponent', () => {
         provide: APP_BASE_HREF,
         useValue: 'http://localhost/'
       }, {
-        provide: QUERY_PARAMS_CONFIG,
-        useValue: <QueryParamsConfig>{ }
+        provide: ADVANCED_ROUTER_CONFIG,
+        useValue: <AdvancedRouterConfig>{ }
       }]
     })
     .compileComponents();
@@ -52,7 +52,7 @@ describe('LinkedinShareComponent', () => {
   providedIn: 'root'
 })
 class MockAdvancedRouter {
-  
+
   constructor(private router: Router) {
   }
 
