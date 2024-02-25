@@ -3,6 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AdvancedRouter } from './advanced-router.service';
 import { AdvancedRouterModule } from '../../advanced-router.module';
 import { ADVANCED_ROUTER_CONFIG } from '../../providers/index';
+import { AdvancedRouterConfig } from '../../interfaces/advanced-router-config';
 
 // OK
 describe('Router', () => {
@@ -16,10 +17,13 @@ describe('Router', () => {
       ],
       providers: [{
         provide: ADVANCED_ROUTER_CONFIG,
-        useValue: <QueryParamsConfig>{
-          'lang': 'preserve',
-          'return-url': '',
-          'options': 'merge'
+        useValue: <AdvancedRouterConfig>{
+          navigationDelay: 5,
+          queryParams: {
+            'lang': 'preserve',
+            'return-url': '',
+            'options': 'merge'
+          },
         }
       }]
     });
