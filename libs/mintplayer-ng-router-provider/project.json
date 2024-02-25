@@ -35,13 +35,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": [
-          "libs/mintplayer-ng-router-provider/src/**/*.ts",
-          "libs/mintplayer-ng-router-provider/src/**/*.html"
-        ]
-      }
+      "executor": "@nx/eslint:lint"
     }
   },
   "tags": []
