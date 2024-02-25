@@ -41,6 +41,9 @@ export class AdvancedRouterLinkDirective extends RouterLink {
      }
    }
 
+   @Input()
+   navigationDelay?: number;
+
   override get urlTree(): UrlTree {
     return this.advancedRouter.createUrlTree(this.nativeCommands, {
       // If the `relativeTo` input is not defined, we want to use `this.route` by default.
@@ -64,7 +67,7 @@ export class AdvancedRouterLinkDirective extends RouterLink {
         return true;
     }
 
-    const delay = this.advancedRouterConfig?.navigationDelay ?? 0;
+    const delay = this.navigationDelay ?? this.advancedRouterConfig?.navigationDelay ?? 0;
     setTimeout(() => super.onClick(button, ctrlKey, shiftKey, altKey, metaKey), delay);
 
     return false;
