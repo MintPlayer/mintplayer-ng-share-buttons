@@ -2,7 +2,7 @@
   "name": "@mintplayer/script-loader",
   "private": false,
   "type": "module",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Load a script and wait until it's ready",
   "repository": {
     "type": "git",
