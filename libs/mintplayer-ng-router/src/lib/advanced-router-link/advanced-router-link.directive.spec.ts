@@ -4,7 +4,8 @@ import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router, UrlCreationOptions, UrlSegment, UrlSegmentGroup, UrlTree } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AdvancedRouter } from '../../services';
+import { MockProvider } from 'ng-mocks';
+import { AdvancedRouter } from '../advanced-router/advanced-router.service';
 import { AdvancedRouterLinkDirective } from './advanced-router-link.directive';
 
 @Component({
@@ -28,6 +29,7 @@ describe('AdvancedRouterLinkDirective', () => {
     TestBed.configureTestingModule({
       imports: [
         CommonModule,
+        AdvancedRouterLinkDirective,
         RouterTestingModule.withRoutes([
           { path: '', pathMatch: 'full', redirectTo: '/test' },
           {
@@ -41,19 +43,18 @@ describe('AdvancedRouterLinkDirective', () => {
         ])
       ],
       declarations: [
-        AdvancedRouterLinkDirective,
         AdvancedRouterLinkTestComponent,
 
         MockHomePageComponent,
         MockAboutPageComponent
       ],
-      providers: [{
-        provide: AdvancedRouter,
-        useClass: MockAdvancedRouter
-      }, {
-        provide: Location,
-        useValue: mockLocation
-      }]
+      providers: [
+        {
+          provide: AdvancedRouter,
+          useClass: MockAdvancedRouter
+        },
+        MockProvider(Location),
+      ]
     })
     .compileComponents();
     
@@ -104,53 +105,25 @@ describe('AdvancedRouterLinkDirective', () => {
   )));
 });
 
-const mockLocation = {
-  back: jest.fn(x => x),
-};
-
 class MockAdvancedRouter {
-  
-  createUrlTree(commands: any[], extras?: UrlCreationOptions) : UrlTree {
-    const urlTree = new UrlTree();
-
-    // Segments
-    urlTree.root = new UrlSegmentGroup(
-      commands.map(c => new UrlSegment(
-        (<string>c).startsWith('/')
-          ? (<string>c).substring(1)
-          : <string>c,
-        { }
-      )),
-      { }
+  createUrlTree(commands: any[], extras?: UrlCreationOptions) {
+    return new UrlTree(
+      new UrlSegmentGroup([], {
+        '': new UrlSegmentGroup(commands.map(String).map(c => new UrlSegment(c.startsWith('/') ? c.substring(1) : c, {})), {}),
+      }),
+      extras?.queryParams || {}
     );
-
-    // QueryParams
-    if ((typeof extras !== 'undefined') && (typeof extras.queryParams !== 'undefined') && (extras.queryParams !== null)) {
-      urlTree.queryParams = extras.queryParams;
-    } else {
-      urlTree.queryParams = { };
-    }
-
-    return urlTree;
   }
 }
 
 @Component({
   selector: 'mock-home-page-component',
-  template: `
-    <h1>
-      Home
-    </h1>`
+  template: `<h1>Home</h1>`
 })
-class MockHomePageComponent {
-}
+class MockHomePageComponent {}
 
 @Component({
   selector: 'mock-about-page-component',
-  template: `
-    <h1>
-      About
-    </h1>`
+  template: `<h1>About</h1>`
 })
-class MockAboutPageComponent {
-}
+class MockAboutPageComponent {}

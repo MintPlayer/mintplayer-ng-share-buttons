@@ -1,18 +1,19 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MockComponent } from 'ng-mocks';
+import { MockComponent, MockProvider } from 'ng-mocks';
 import { FacebookShareComponent } from '@mintplayer/ng-share-buttons/facebook';
 import { TwitterShareComponent } from '@mintplayer/ng-share-buttons/twitter';
 import { LinkedinShareComponent } from '@mintplayer/ng-share-buttons/linkedin';
 import { AppComponent } from './app.component';
+import { provideTestBaseHref } from '@mintplayer/ng-base-url/testing';
+import { BaseUrlService } from '@mintplayer/ng-base-url';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule.withRoutes([])
-      ],
-      declarations: [
+        RouterTestingModule.withRoutes([]),
+
         // Unit to test
         AppComponent,
 
@@ -21,6 +22,10 @@ describe('AppComponent', () => {
         MockComponent(TwitterShareComponent),
         MockComponent(LinkedinShareComponent)
       ],
+      providers: [
+        MockProvider(BaseUrlService),
+        provideTestBaseHref()
+      ]
     }).compileComponents();
   });
 
