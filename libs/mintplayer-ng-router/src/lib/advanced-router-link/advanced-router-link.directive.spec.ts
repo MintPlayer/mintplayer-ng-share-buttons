@@ -28,6 +28,7 @@ describe('AdvancedRouterLinkDirective', () => {
     TestBed.configureTestingModule({
       imports: [
         CommonModule,
+        AdvancedRouterLinkDirective,
         RouterTestingModule.withRoutes([
           { path: '', pathMatch: 'full', redirectTo: '/test' },
           {
@@ -41,7 +42,6 @@ describe('AdvancedRouterLinkDirective', () => {
         ])
       ],
       declarations: [
-        AdvancedRouterLinkDirective,
         AdvancedRouterLinkTestComponent,
 
         MockHomePageComponent,
@@ -137,20 +137,12 @@ class MockAdvancedRouter {
 
 @Component({
   selector: 'mock-home-page-component',
-  template: `
-    <h1>
-      Home
-    </h1>`
+  template: `<h1>Home</h1>`
 })
-class MockHomePageComponent {
-}
+class MockHomePageComponent {}
 
 @Component({
   selector: 'mock-about-page-component',
-  template: `
-    <h1>
-      About
-    </h1>`
+  template: `<h1>About</h1>`
 })
-class MockAboutPageComponent {
-}
+class MockAboutPageComponent {}
