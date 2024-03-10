@@ -49,11 +49,6 @@ describe('AdvancedRouterLinkDirective', () => {
         MockAboutPageComponent
       ],
       providers: [
-        // MockProvider(AdvancedRouter),
-        // {
-        //   provide: Location,
-        //   useValue: mockLocation
-        // },
         {
           provide: AdvancedRouter,
           useClass: MockAdvancedRouter
@@ -110,34 +105,14 @@ describe('AdvancedRouterLinkDirective', () => {
   )));
 });
 
-const mockLocation = {
-  back: jest.fn(x => x),
-};
-
 class MockAdvancedRouter {
-  
-  createUrlTree(commands: any[], extras?: UrlCreationOptions) : UrlTree {
-    const urlTree = new UrlTree();
-
-    // Segments
-    urlTree.root = new UrlSegmentGroup(
-      commands.map(c => new UrlSegment(
-        (<string>c).startsWith('/')
-          ? (<string>c).substring(1)
-          : <string>c,
-        { }
-      )),
-      { }
+  createUrlTree(commands: any[], extras?: UrlCreationOptions) {
+    return new UrlTree(
+      new UrlSegmentGroup([], {
+        '': new UrlSegmentGroup(commands.map(String).map(c => new UrlSegment(c.startsWith('/') ? c.substring(1) : c, {})), {}),
+      }),
+      extras?.queryParams || {}
     );
-
-    // QueryParams
-    if ((typeof extras !== 'undefined') && (typeof extras.queryParams !== 'undefined') && (extras.queryParams !== null)) {
-      urlTree.queryParams = extras.queryParams;
-    } else {
-      urlTree.queryParams = { };
-    }
-
-    return urlTree;
   }
 }
 
