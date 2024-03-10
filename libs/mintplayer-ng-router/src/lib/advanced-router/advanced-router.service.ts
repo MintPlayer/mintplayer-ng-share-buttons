@@ -2,16 +2,19 @@ import { Inject, Injectable, Optional } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 import { ActivatedRoute, NavigationBehaviorOptions, NavigationExtras, Params, Router, UrlCreationOptions, UrlTree } from '@angular/router';
 import { IRouter } from '@mintplayer/ng-router-provider';
-import { AdvancedRouterConfig } from '../../interfaces/advanced-router-config';
-import { UrlWithQueryParams } from '../../interfaces/url-with-query-params';
-import { ADVANCED_ROUTER_CONFIG } from '../../providers/advanced-router-config.provider';
+import { ADVANCED_ROUTER_CONFIG } from '../advanced-router-config.provider';
+import { AdvancedRouterConfig } from '../interfaces/advanced-router-config';
+import { UrlWithQueryParams } from '../interfaces/url-with-query-params';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdvancedRouter implements IRouter {
 
-  constructor(private router: Router, private route: ActivatedRoute, @Optional() @Inject(ADVANCED_ROUTER_CONFIG) private advancedRouterConfig?: AdvancedRouterConfig) {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    @Optional() @Inject(ADVANCED_ROUTER_CONFIG) private advancedRouterConfig?: AdvancedRouterConfig) {
   }
 
   /**

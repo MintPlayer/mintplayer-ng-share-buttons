@@ -4,7 +4,7 @@ import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router, UrlCreationOptions, UrlSegment, UrlSegmentGroup, UrlTree } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AdvancedRouter } from '../../services';
+import { AdvancedRouter } from '../advanced-router/advanced-router.service';
 import { AdvancedRouterLinkDirective } from './advanced-router-link.directive';
 
 @Component({
