@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { BaseUrlService } from '@mintplayer/ng-base-url';
 import { AdvancedRouterLinkDirective } from '@mintplayer/ng-router';
 import { FacebookShareComponent } from '@mintplayer/ng-share-buttons/facebook';
@@ -11,6 +12,7 @@ import { LinkedinShareComponent } from '@mintplayer/ng-share-buttons/linkedin';
   styleUrls: ['./app.component.scss'],
   standalone: true,
   imports: [
+    RouterOutlet,
     FacebookShareComponent,
     TwitterShareComponent,
     LinkedinShareComponent,
@@ -18,7 +20,7 @@ import { LinkedinShareComponent } from '@mintplayer/ng-share-buttons/linkedin';
   ]
 })
 export class AppComponent {
-  constructor(private baseUrlService: BaseUrlService) {
+  constructor(baseUrlService: BaseUrlService) {
     this.baseUrl = baseUrlService.getBaseUrl({ subdomain: 'test' });
   }
 

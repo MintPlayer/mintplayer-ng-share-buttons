@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
 
-export const routes: Routes = [
-    { path: '', loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule) }
+export const APP_ROUTES: Routes = [
+    { path: '', loadChildren: () => import('./pages/pages.routes').then(m => m.PAGES_ROUTES) }
 ];

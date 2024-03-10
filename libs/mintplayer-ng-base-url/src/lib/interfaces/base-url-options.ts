@@ -3,5 +3,5 @@ export interface BaseUrlOptions {
     dropScheme: boolean;
 
     /** Inserts the specified subdomain in the generated url. */
-    subdomain: string;
+    subdomain?: string;
 }

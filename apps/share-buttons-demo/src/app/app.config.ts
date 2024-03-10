@@ -1,11 +1,13 @@
 import { ApplicationConfig } from "@angular/core";
 import { PreloadAllModules, provideRouter, withEnabledBlockingInitialNavigation, withPreloading } from "@angular/router";
-import { routes } from "./app.routes";
+import { APP_ROUTES } from "./app.routes";
 import { provideAdvancedRouter } from "@mintplayer/ng-router";
+import { provideBaseHref } from "@mintplayer/ng-base-url";
 
 export const appConfig: ApplicationConfig = {
     providers: [
-        provideRouter(routes, withPreloading(PreloadAllModules), withEnabledBlockingInitialNavigation()),
-        provideAdvancedRouter({ navigationDelay: 1000 })
+        provideRouter(APP_ROUTES, withPreloading(PreloadAllModules), withEnabledBlockingInitialNavigation()),
+        provideAdvancedRouter({ navigationDelay: 1000 }),
+        provideBaseHref(),
     ]
 }

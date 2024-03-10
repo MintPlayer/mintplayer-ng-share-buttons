@@ -1,10 +1,19 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FacebookShareComponent } from '@mintplayer/ng-share-buttons/facebook';
+import { LinkedinShareComponent } from '@mintplayer/ng-share-buttons/linkedin';
+import { TwitterShareComponent } from '@mintplayer/ng-share-buttons/twitter';
 
 @Component({
   selector: 'mintplayer-ng-share-buttons-show',
   templateUrl: './show.component.html',
   styleUrls: ['./show.component.scss'],
+  standalone: true,
+  imports: [
+    FacebookShareComponent,
+    TwitterShareComponent,
+    LinkedinShareComponent,
+  ]
 })
 export class ShowComponent {
   constructor(private route: ActivatedRoute) {
