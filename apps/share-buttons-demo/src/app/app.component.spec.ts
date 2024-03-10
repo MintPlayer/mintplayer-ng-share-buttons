@@ -5,14 +5,14 @@ import { FacebookShareComponent } from '@mintplayer/ng-share-buttons/facebook';
 import { TwitterShareComponent } from '@mintplayer/ng-share-buttons/twitter';
 import { LinkedinShareComponent } from '@mintplayer/ng-share-buttons/linkedin';
 import { AppComponent } from './app.component';
+import { provideTestBaseHref } from '@mintplayer/ng-base-url/testing';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule.withRoutes([])
-      ],
-      declarations: [
+        RouterTestingModule.withRoutes([]),
+
         // Unit to test
         AppComponent,
 
@@ -21,6 +21,9 @@ describe('AppComponent', () => {
         MockComponent(TwitterShareComponent),
         MockComponent(LinkedinShareComponent)
       ],
+      providers: [
+        provideTestBaseHref()
+      ]
     }).compileComponents();
   });
 

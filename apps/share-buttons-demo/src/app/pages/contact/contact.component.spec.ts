@@ -11,10 +11,11 @@ describe('ContactComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         // Unit to test
         ContactComponent,
-      
+      ],
+      declarations: [
         // Mock dependencies
         MockComponent(FacebookShareComponent),
         MockComponent(TwitterShareComponent),

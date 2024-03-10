@@ -10,9 +10,8 @@ describe('PeopleComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule.withRoutes([])
-      ],
-      declarations: [
+        RouterTestingModule.withRoutes([]),
+
         // Unit to test
         PeopleComponent
       ],
