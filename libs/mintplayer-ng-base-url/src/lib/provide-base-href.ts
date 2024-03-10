@@ -1,4 +1,4 @@
-import { APP_BASE_HREF, CommonModule, DOCUMENT, isPlatformServer } from '@angular/common';
+import { APP_BASE_HREF, DOCUMENT, isPlatformServer } from '@angular/common';
 import { InjectionToken, Optional, PLATFORM_ID, Provider } from '@angular/core';
 import { BaseUrlOptions } from './interfaces/base-url-options';
 import { BootFuncParams } from './interfaces/boot-func-params';
