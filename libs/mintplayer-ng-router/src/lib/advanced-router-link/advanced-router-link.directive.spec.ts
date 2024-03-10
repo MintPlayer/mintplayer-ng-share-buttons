@@ -4,6 +4,7 @@ import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router, UrlCreationOptions, UrlSegment, UrlSegmentGroup, UrlTree } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MockProvider } from 'ng-mocks';
 import { AdvancedRouter } from '../advanced-router/advanced-router.service';
 import { AdvancedRouterLinkDirective } from './advanced-router-link.directive';
 
@@ -47,13 +48,18 @@ describe('AdvancedRouterLinkDirective', () => {
         MockHomePageComponent,
         MockAboutPageComponent
       ],
-      providers: [{
-        provide: AdvancedRouter,
-        useClass: MockAdvancedRouter
-      }, {
-        provide: Location,
-        useValue: mockLocation
-      }]
+      providers: [
+        // MockProvider(AdvancedRouter),
+        // {
+        //   provide: Location,
+        //   useValue: mockLocation
+        // },
+        {
+          provide: AdvancedRouter,
+          useClass: MockAdvancedRouter
+        },
+        MockProvider(Location),
+      ]
     })
     .compileComponents();
     
