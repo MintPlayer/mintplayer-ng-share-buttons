@@ -32,6 +32,5 @@ export class ShowComponent {
     });
   }
   
-  id: number | null = null;  
-
+  id: number | null = null;
 }

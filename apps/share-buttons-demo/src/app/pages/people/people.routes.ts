@@ -8,7 +8,7 @@ export const PEOPLE_ROUTES: Routes = [
   },
   {
     path: ':id',
-    // component: PeopleComponent,
-    loadComponent: () => import('./show/show.component').then((m) => m.ShowComponent)
+    component: PeopleComponent,
+    loadChildren: () => import('./show/show.routes').then(m => m.SHOW_ROUTES)
   },
 ];
