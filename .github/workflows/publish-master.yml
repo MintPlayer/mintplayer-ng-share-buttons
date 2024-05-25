@@ -32,13 +32,13 @@ jobs:
         node-version: 18
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci --force
     
     - name: Build
-      run: npm run nx build --configuration=production
+      run: npx nx build --configuration=production
 
     - name: Test
-      run: npm run nx run-many -- --target=test --projects=share-buttons-demo --watch=false --browsers=ChromeHeadless
+      run: npx nx run-many --target=test --projects=share-buttons-demo --watch=false --browsers=ChromeHeadless
 
     ## ng-base-url
     - name: Upload code coverage report
